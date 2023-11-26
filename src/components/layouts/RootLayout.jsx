@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 function RootLayout() {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col overflow-x-hidden">
       <Outlet />
     </div>
   );
