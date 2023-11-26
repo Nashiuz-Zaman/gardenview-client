@@ -17,9 +17,9 @@ export default {
         elementGapMd: "3rem",
       },
       colors: {
-        primary: "#00A3B4",
-        primaryLight: "#33b5c3",
-        primaryLightest: "#b3e3e9",
+        primary: "#228B22",
+        primaryLight: "#389738",
+        primaryLightest: "#7ab97a",
         textPrimary: "#1C1B1B",
         textMediumLight: "#1c1b1bcc",
         textLight: "#1c1b1b99",
