@@ -11,8 +11,8 @@ export default {
       },
       spacing: {
         sectionGapLg: "11rem",
-        sectionGapMd: "9rem",
-        sectionGapSm: "5rem",
+        sectionGapMd: "7.5rem",
+        sectionGapSm: "4rem",
         elementGapSm: "1.4rem",
         elementGapMd: "3rem",
       },

@@ -15,10 +15,10 @@ const LinkBtn = ({
 }) => {
   // common classes
   const outlinedClasses =
-    "bg-transparent border border-white text-white hover:bg-[rgba(255,255,255,0.5)]";
+    "bg-transparent border border-gray-300 hover:border-white text-gray-300 hover:text-white";
 
   const oulinedPrimaryClasses =
-    "bg-transparent border border-primary text-primary hover:bg-primaryLightest hover:border-primaryLightest";
+    "bg-transparent border border-primary text-primary hover:text-primaryLightest hover:border-primaryLightest";
 
   const primaryClasses =
     "bg-primary border border-primary hover:border-primaryLight hover:bg-primaryLight text-white";
