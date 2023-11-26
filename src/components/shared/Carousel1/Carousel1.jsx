@@ -99,7 +99,7 @@ const Carousel1 = ({ imagesData }) => {
         {/* left button */}
         <button
           onClick={goPrevSlide}
-          className={`bg-primary p-2 rounded-full transition-all duration-500 ${
+          className={`bg-primary p-1 rounded-full transition-all duration-500 ${
             curSlide === 0 ? "opacity-0 collapse" : "opacity-100 visible"
           }`}
         >
@@ -135,7 +135,7 @@ const Carousel1 = ({ imagesData }) => {
         {/* right button */}
         <button
           onClick={goNextSlide}
-          className={`bg-primary p-2 rounded-full transition-all duration-500 ${
+          className={`bg-primary p-1 rounded-full transition-all duration-500 ${
             curSlide === lastSlide
               ? "opacity-0 collapse"
               : "opacity-100 visible"

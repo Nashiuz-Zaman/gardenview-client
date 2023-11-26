@@ -10,6 +10,7 @@ export default {
         "3xl": "1700px",
       },
       spacing: {
+        sectionGapXl: "14rem",
         sectionGapLg: "11rem",
         sectionGapMd: "7.5rem",
         sectionGapSm: "4rem",

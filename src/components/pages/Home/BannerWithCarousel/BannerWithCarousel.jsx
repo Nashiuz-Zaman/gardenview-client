@@ -20,7 +20,6 @@ const BannerWithCarousel = () => {
     largeTabletMatches,
   } = useMediaQueryContext();
 
-  console.log(computerScreenMatches);
   return (
     <div className="pb-8 lg:py-[5rem] relative">
       {/* design behind the main content */}
