@@ -8,7 +8,6 @@ function RootLayout() {
   return (
     <div className="text-textPrimary min-h-screen flex flex-col overflow-x-hidden max-w-[120rem] mx-auto font-default">
       <Header />
-
       <Outlet />
     </div>
   );
