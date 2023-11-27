@@ -33,3 +33,38 @@ export const featuresTextContent = {
     { id: 4, imageSource: "https://i.ibb.co/4YWVp7h/swimming-pool.webp" },
   ],
 };
+
+export const aboutContent = {
+  heading: (
+    <>
+      About <br /> GardenView
+    </>
+  ),
+  images: [
+    {
+      id: 0,
+      imageSource: "https://i.ibb.co/vZS3V0h/apartments-1.webp",
+      alt: "Apartment outside view",
+    },
+    {
+      id: 1,
+      imageSource: "https://i.ibb.co/jyfY9YY/apartments-2.webp",
+      alt: "Apartment interior",
+    },
+    {
+      id: 2,
+      imageSource: "https://i.ibb.co/B4zLFF0/apartments-3.webp",
+      alt: "Apartment swimming pool",
+    },
+  ],
+  descriptions: [
+    {
+      id: 0,
+      text: "Nestled in the heart of Gulshan, GardenView Homes stands as a beacon of luxury and tranquility. A masterpiece of modern architecture, the building boasts sleek lines and elegant design, complemented by lush greenery that envelops the surroundings. As you step into GardenView Homes, you're greeted by a grand lobby adorned with artful details, setting the tone for the opulence that awaits within.",
+    },
+    {
+      id: 1,
+      text: "Beyond the glass façade, residents are treated to panoramic views of meticulously landscaped gardens, creating a serene escape from the hustle and bustle of the city. Each apartment is a haven of sophistication, offering a harmonious blend of comfort and style. Residents can unwind on private balconies, savoring the sights and sounds of nature or retreat to the rooftop terrace for breathtaking views of the city skyline.",
+    },
+  ],
+};

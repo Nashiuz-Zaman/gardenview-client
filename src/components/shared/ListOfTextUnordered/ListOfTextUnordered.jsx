@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const ListOfTextUnordered = ({ textArray, modifyClasses = "" }) => {
   return (
     <ul
-      className={`text-sm lg:text-base leading-7 lg:leading-9 ${modifyClasses}`}
+      className={`text-sm lg:text-base 2xl:text-xl leading-7 lg:leading-9 ${modifyClasses}`}
     >
       {textArray &&
         textArray.map((feature, i) => {

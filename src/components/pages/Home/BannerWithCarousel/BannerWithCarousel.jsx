@@ -40,8 +40,8 @@ const BannerWithCarousel = () => {
           )}
         </div>
 
-        {/* banner */}
-        <div className="p-3 2xsm:p-5 lg:p-0 lg:pr-2 xl:p-0 text-center lg:text-left">
+        {/* banner text part */}
+        <div className="p-3 2xsm:p-5 lg:p-0 lg:pr-2 text-center lg:text-left">
           {/* main heading */}
           <h1 className="text-2xl xsm:text-3xl md:text-5xl font-bold text-white mb-3 md:mb-5">
             {heading}

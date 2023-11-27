@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 // component
 import BannerWithCarousel from "../BannerWithCarousel/BannerWithCarousel";
 import Features from "../Features/Features";
+import About from "../About/About";
 import InnerContainer from "./../../../containers/InnerContainer/InnerContainer";
 
 // hooks
@@ -40,8 +41,13 @@ const Home = () => {
       </section>
 
       {/* features section */}
-      <section ref={featuresRef} className="mb-sectionGapMd lg:mb-sectionGapXl">
+      <section ref={featuresRef} className="mb-sectionGapMd lg:mb-sectionGapLg">
         <Features shouldAnimate={featuresAnimate} />
+      </section>
+
+      {/* about section */}
+      <section className="mb-sectionGapMd lg:mb-sectionGapLg">
+        <About />
       </section>
     </div>
   );

@@ -22,7 +22,7 @@ const Header = () => {
   const { mobileNavOpen, openNav, closeNav } = useMobileNavigation();
 
   return (
-    <header className="sticky w-full top-0 left-0 py-5 z-50">
+    <header className="sticky w-full top-0 py-sectionGapSm z-50">
       <InnerContainer>
         <div className="grid grid-cols-2 lg:grid-cols-3 items-center">
           {/* website logo */}
