@@ -5,9 +5,6 @@ import PropTypes from "prop-types";
 import InnerContainer from "../../../containers/InnerContainer/InnerContainer";
 import Carousel3 from "../../../shared/Carousel3/Carousel3";
 
-// hook
-import useMediaQueryContext from "../../../../hooks/useMediaQueryContext";
-
 // data
 import { featuresTextContent } from "../../../../nativeData/textContent";
 import SectionHeading from "../../../shared/SectionHeading/SectionHeading";
@@ -59,7 +56,10 @@ const Features = ({ shouldAnimate = false }) => {
               shouldAnimate ? "visible-left" : "invisible-left"
             }`}
           >
-            <Carousel3 imagesData={images} />
+            <Carousel3
+              imagesData={images}
+              shouldStart={shouldAnimate ? true : false}
+            />
           </div>
         </div>
       </InnerContainer>

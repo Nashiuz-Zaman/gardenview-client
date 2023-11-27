@@ -2,18 +2,17 @@ import PropTypes from "prop-types";
 
 // custom hook
 import useCarousel3 from "./useCarousel3";
+import { useEffect } from "react";
 
-const Carousel3 = ({ imagesData, interval = 3000 }) => {
-  const { curSlide } = useCarousel3(imagesData, interval);
+const Carousel3 = ({ imagesData, interval = 3000, shouldStart = false }) => {
+  const { curSlide, setShouldStart } = useCarousel3(imagesData, interval);
+
+  useEffect(() => {
+    setShouldStart(shouldStart);
+  }, [setShouldStart, shouldStart]);
 
   return (
-    <div
-      className="w-full aspect-[16/23] relative"
-      style={{
-        perspective: "1100px",
-        perspectiveOrigin: "center",
-      }}
-    >
+    <div className="w-full aspect-[16/23] relative">
       {/* background slides */}
       {imagesData &&
         imagesData.map((imageData) => {
@@ -36,6 +35,7 @@ const Carousel3 = ({ imagesData, interval = 3000 }) => {
 Carousel3.propTypes = {
   imagesData: PropTypes.array.isRequired,
   interval: PropTypes.number,
+  shouldStart: PropTypes.bool,
 };
 
 export default Carousel3;
