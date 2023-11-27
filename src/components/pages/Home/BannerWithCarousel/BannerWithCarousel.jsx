@@ -26,7 +26,7 @@ const BannerWithCarousel = () => {
       <div className="absolute w-full lg:w-[65%] -z-10 h-[80%] sm:h-[70%] lg:h-full bg-black bottom-0 lg:top-0 right-0 rounded-2xl"></div>
 
       {/* main content */}
-      <div className="grid grid-cols-1 grid-rows-[1fr_h-max] lg:grid-rows-1 lg:grid-cols-[1fr_1fr] gap-4 md:gap-8 lg:gap-10 items-center">
+      <div className="grid grid-cols-1 grid-rows-[1fr_h-max] lg:grid-rows-1 lg:grid-cols-[1fr_1fr] 2xl:grid-cols-[1.10fr_1fr] 3xl:grid-cols-[1.25fr_1fr] gap-4 md:gap-8 lg:gap-10 2xl:gap-14 3xl:gap-14 items-center">
         {/* carousel */}
         <div className="w-[85%] mx-auto lg:w-full">
           {/* for small screens use this carousel2 */}

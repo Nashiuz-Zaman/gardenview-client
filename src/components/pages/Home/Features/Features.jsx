@@ -52,7 +52,7 @@ const Features = ({ shouldAnimate = false }) => {
 
           {/* carousel part */}
           <div
-            className={`w-full lg:w-[85%] xl:ml-5 ${
+            className={`w-full lg:w-[85%] xl:ml-5 3xl:ml-0 3xl:justify-self-end 3xl:mr-[7%] ${
               shouldAnimate ? "visible-left" : "invisible-left"
             }`}
           >
