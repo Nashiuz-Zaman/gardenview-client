@@ -19,7 +19,7 @@ const Features = ({ shouldAnimate = false }) => {
     <div className="relative">
       {/* green design div */}
       <div
-        className={`h-[5rem] md:h-[7rem] lg:h-[10rem] bg-gradient-to-r from-primaryLight to-primary duration-1000 ${
+        className={`w-4/6 ml-auto h-[5rem] md:h-[7rem] lg:h-[10rem] bg-gradient-to-r from-primaryLight to-primary duration-1000 ${
           shouldAnimate ? "visible-left" : "invisible-left"
         }`}
       ></div>
@@ -38,7 +38,7 @@ const Features = ({ shouldAnimate = false }) => {
             {/* heading */}
             <SectionHeading text={heading} modifyClasses="mb-5 lg:mb-8" />
 
-            <div className="grid grid-cols-1 gap-5 xsm:grid-cols-2 sm:grid-cols-1 lg:gap-8">
+            <div className="grid grid-cols-1 gap-5 xsm:grid-cols-2 sm:grid-cols-1 ">
               {/* description */}
               <Description text={description} />
 
