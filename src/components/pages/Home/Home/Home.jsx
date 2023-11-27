@@ -52,7 +52,7 @@ const Home = () => {
       </section>
 
       {/* directions section */}
-      <section className="mb-sectionGapMd lg:mb-sectionGapLg">
+      <section id="directions" className="mb-sectionGapMd lg:mb-sectionGapLg">
         <Directions />
       </section>
     </div>
