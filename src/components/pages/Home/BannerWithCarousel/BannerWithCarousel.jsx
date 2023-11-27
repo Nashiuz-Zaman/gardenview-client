@@ -53,7 +53,7 @@ const BannerWithCarousel = () => {
           </p>
 
           {/*  buttons */}
-          <div className="flex flex-col xsm:flex-row items-center gap-4 md:gap-5 justify-center lg:justify-start">
+          <div className="flex flex-col xsm:flex-row items-center gap-3 justify-center lg:justify-start">
             <LinkBtn text="Learn More" />
             <LinkBtn text="Browse Apartments" outlined={true} />
           </div>

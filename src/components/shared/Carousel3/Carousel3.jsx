@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import useCarousel3 from "./useCarousel3";
 import { useEffect } from "react";
 
-const Carousel3 = ({ imagesData, interval = 3000, shouldStart = false }) => {
+const Carousel3 = ({ imagesData, interval = 3000, shouldStart = true }) => {
   const { curSlide, setShouldStart } = useCarousel3(imagesData, interval);
 
   useEffect(() => {
