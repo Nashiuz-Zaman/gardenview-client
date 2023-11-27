@@ -10,6 +10,10 @@ html {
   scroll-padding-top: 2.5rem;
 }
 
+.active {
+  @apply text-primary;
+}
+
 .invisible-left {
   backface-visibility: hidden !important;
   -moz-backface-visibility: hidden !important;

@@ -6,8 +6,6 @@ const useCarousel2 = (imagesData, interval) => {
   const [curSlide, setCurSlide] = useState(0);
   const [shouldStart, setShouldStart] = useState(null);
 
-  console.log(shouldStart);
-
   useEffect(() => {
     let timer;
     if (shouldStart === true) {

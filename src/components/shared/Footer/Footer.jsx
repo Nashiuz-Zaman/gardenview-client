@@ -27,21 +27,27 @@ const Footer = () => {
         {/* top part */}
 
         {/* website logo */}
-        <Brandlogo imageSource={logoWhite} modifyClasses="mb-8" />
+        <Brandlogo
+          imageSource={logoWhite}
+          modifyClasses="mx-auto md:mx-0 mb-8"
+        />
 
         {/* address and links */}
-        <div className="mb-sectionGapMd grid grid-cols-3">
-          <Address addressData={addressData} />
+        <div className="mb-14 md:mb-sectionGapMd grid grid-cols-1 md:grid-cols-3">
+          <Address
+            addressData={addressData}
+            modifyClasses="text-center md:text-left mb-14 md:mb-0"
+          />
 
           {/* list of links */}
-          <div className="justify-self-center">
+          <div className="justify-self-center mb-14 text-center md:text-left">
             <ListOfLinks linksData={footerOptions} />
           </div>
 
           {/* follow us social media */}
           <div className="justify-self-center">
             {/* social links heading */}
-            <h3 className="text-white text-2xl font-medium mb-4 capitalize">
+            <h3 className="text-white text-2xl font-medium text-center md:text-left mb-4 capitalize">
               Follow us
             </h3>
 
