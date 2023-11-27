@@ -10,23 +10,34 @@ import InnerContainer from "./../../../containers/InnerContainer/InnerContainer"
 
 // hooks
 import useDetectElementIntersection from "../../../../hooks/useDetectElementIntersection";
+import useMediaQueryContext from "../../../../hooks/useMediaQueryContext";
 
 const Home = () => {
   // section ref
   const featuresRef = useRef(null);
   const aboutRef = useRef(null);
+  const directionsRef = useRef(null);
+
+  const { computerScreenMatches } = useMediaQueryContext();
 
   // observing feature
   const { shouldAnimate: featuresShouldAnimate } = useDetectElementIntersection(
     featuresRef,
-    1
+    computerScreenMatches ? 0.5 : 0.2
   );
 
   // observing about section
   const { shouldAnimate: aboutShouldAnimate } = useDetectElementIntersection(
     aboutRef,
-    0.3
+    computerScreenMatches ? 0.5 : 0.2
   );
+
+  // observing about section
+  const { shouldAnimate: directionsShouldAnimate } =
+    useDetectElementIntersection(
+      directionsRef,
+      computerScreenMatches ? 0.5 : 0.2
+    );
 
   return (
     <div>
@@ -52,8 +63,12 @@ const Home = () => {
       </section>
 
       {/* directions section */}
-      <section id="directions" className="mb-sectionGapMd lg:mb-sectionGapLg">
-        <Directions />
+      <section
+        ref={directionsRef}
+        id="directions"
+        className="mb-sectionGapMd lg:mb-sectionGapLg"
+      >
+        <Directions shouldAnimate={directionsShouldAnimate} />
       </section>
     </div>
   );

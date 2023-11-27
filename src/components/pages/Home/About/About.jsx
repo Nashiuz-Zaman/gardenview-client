@@ -15,23 +15,31 @@ const About = ({ shouldAnimate }) => {
 
   return (
     <div className="relative">
-      {/* black design div */}
+      {/* black design div (this animates on scroll) */}
       <div
-        className={`bg-black w-[5rem] hidden md:block md:w-[7rem] lg:w-[10rem] 3xl:w-[12rem] md:h-[90%] lg:h-[80%] xl:h-[90%] 3xl:h-full absolute top-1/2 -translate-y-1/2 left-0 lg:left-[6%] 3xl:left-[7%] -z-10 ${
-          shouldAnimate ? "visible" : "visible"
+        className={`bg-black w-[5rem] hidden md:block md:w-[7rem] lg:w-[10rem] 3xl:w-[12rem] md:h-[90%] lg:h-[80%] xl:h-[90%] 3xl:h-full absolute top-1/2 left-0 lg:left-[6%] 3xl:left-[7%] -z-10 transition-all duration-[1500ms] ${
+          shouldAnimate
+            ? "-translate-y-1/2 opacity-100"
+            : "-translate-y-full opacity-0"
         }`}
       ></div>
 
       <InnerContainer>
         <div className="pl-[0rem] md:pl-0 grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-10 xl:gap-[6rem] items-center">
-          {/* pictures */}
+          {/* pictures (this animates on scroll) */}
           <ThreeImageGrid
             imagesData={images}
-            modifyClasses=" md:border-[1rem] lg:border-x-0 md:border-white bg-white lg:gap-4"
+            modifyClasses={`md:border-[1rem] lg:border-x-0 md:border-white bg-white lg:gap-4 ${
+              shouldAnimate ? "visible-left" : "invisible-left"
+            }`}
           />
 
-          {/* text part */}
-          <div className="bg-primaryLight rounded-2xl py-7 px-6 lg:p-10 xl:p-sectionGapSm 2xl:p-sectionGapMd">
+          {/* text part (this animates on scroll) */}
+          <div
+            className={`bg-primaryLight rounded-2xl py-7 px-6 lg:p-10 xl:p-sectionGapSm 2xl:p-sectionGapMd ${
+              shouldAnimate ? "visible-top" : "invisible-top"
+            }`}
+          >
             {/* heading */}
             <SectionHeading
               text={heading}

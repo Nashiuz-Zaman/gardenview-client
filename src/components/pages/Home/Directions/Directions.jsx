@@ -18,7 +18,9 @@ const Directions = ({ shouldAnimate }) => {
 
   return (
     <div
-      className={`bg-primaryLight py-7 px-6 lg:px-0 md:py-10 lg:py-sectionGapMd ${shouldAnimate}`}
+      className={`bg-primaryLight py-7 px-6 lg:px-0 md:py-10 lg:py-sectionGapMd ${
+        shouldAnimate ? "visible-top" : "invisible-top"
+      }`}
     >
       <InnerContainer>
         {/* heading */}
