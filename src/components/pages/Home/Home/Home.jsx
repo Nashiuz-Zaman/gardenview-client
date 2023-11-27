@@ -9,6 +9,7 @@ import InnerContainer from "./../../../containers/InnerContainer/InnerContainer"
 
 // hooks
 import useIntersectionObserver from "./../../../../hooks/useIntersectionObserver";
+import Directions from "../Directions/Directions";
 
 const Home = () => {
   // should features section animate?
@@ -48,6 +49,11 @@ const Home = () => {
       {/* about section */}
       <section className="mb-sectionGapMd lg:mb-sectionGapLg">
         <About />
+      </section>
+
+      {/* directions section */}
+      <section className="mb-sectionGapMd lg:mb-sectionGapLg">
+        <Directions />
       </section>
     </div>
   );

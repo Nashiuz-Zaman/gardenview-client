@@ -68,3 +68,9 @@ export const aboutContent = {
     },
   ],
 };
+
+export const directionsContent = {
+  heading: <>Visit us</>,
+  directions:
+    "Nestled at the intersection of Blossom Lane and Tranquil Avenue in the heart of Gulshan, GardenView Apartments stand tall, a beacon of luxury. Follow the charming tree-lined Blossom Lane until you reach the exquisite entrance, where the scent of blooming flowers welcomes you. Turn onto Tranquil Avenue, and there it is — a modern oasis amidst the bustling cityscape. Easily accessible yet tucked away, GardenView Apartments redefine urban living at the crossroads of elegance and convenience",
+};

@@ -31,11 +31,11 @@ const About = ({ shouldAnimate }) => {
           />
 
           {/* text part */}
-          <div className="bg-primaryLight rounded-2xl p-6 lg:p-10 xl:p-sectionGapSm 2xl:p-sectionGapMd">
+          <div className="bg-primaryLight rounded-2xl py-7 px-6 lg:p-10 xl:p-sectionGapSm 2xl:p-sectionGapMd">
             {/* heading */}
             <SectionHeading
               text={heading}
-              modifyClasses="text-left text-white mb-3 lg:!mb-8 md:!text-3xl 2md:!text-4xl lg:!text-5xl xl:!text-6xl"
+              modifyClasses="text-left text-white mb-5 lg:!mb-8 md:!text-3xl 2md:!text-4xl lg:!text-5xl xl:!text-6xl"
             />
 
             {/* description */}
