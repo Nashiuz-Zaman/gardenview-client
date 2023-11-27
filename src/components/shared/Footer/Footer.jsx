@@ -53,16 +53,16 @@ const Footer = () => {
 
             {/* social media icons */}
             <div className="text-white text-2xl flex items-center gap-4">
-              <a href="www.facebook.com">
+              <a href="https://www.facebook.com">
                 <FaFacebook />
               </a>
-              <a href="www.twitter.com">
+              <a href="https://www.twitter.com">
                 <FaXTwitter />
               </a>
-              <a href="www.instagram.com">
+              <a href="https://www.instagram.com">
                 <FaInstagram />
               </a>
-              <a href="www.youtube.com">
+              <a href="https://www.youtube.com">
                 <FaYoutube />
               </a>
             </div>
