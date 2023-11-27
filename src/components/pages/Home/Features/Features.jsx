@@ -19,13 +19,13 @@ const Features = ({ shouldAnimate = false }) => {
     <div className="relative">
       {/* green design div */}
       <div
-        className={`w-4/6 ml-auto h-[5rem] md:h-[7rem] lg:h-[10rem] bg-gradient-to-r from-primaryLight to-primary duration-1000 ${
+        className={`w-4/6 ml-auto h-[5rem] md:h-[7rem] lg:h-[10rem] 3xl:h-[12rem] bg-gradient-to-r from-primaryLight to-primary duration-1000 ${
           shouldAnimate ? "visible-left" : "invisible-left"
         }`}
       ></div>
       {/* black design div */}
       <div
-        className={`bg-black w-[5rem] md:w-[7rem] lg:w-[10rem] h-full lg:h-[105%] absolute top-0 lg:-top-[5%] right-0 lg:right-[5%] -z-10 ${
+        className={`bg-black w-[5rem] md:w-[7rem] lg:w-[10rem] 3xl:w-[12rem] h-full lg:h-[105%] absolute top-0 lg:-top-[5%] right-0 lg:right-[5%] -z-10 ${
           shouldAnimate ? "visible-top" : "invisible-top"
         }`}
       ></div>

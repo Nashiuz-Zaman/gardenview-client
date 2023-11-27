@@ -17,7 +17,7 @@ const About = ({ shouldAnimate }) => {
     <div className="relative">
       {/* black design div */}
       <div
-        className={`bg-black w-[5rem] hidden md:block md:w-[7rem] lg:w-[10rem] md:h-[90%] lg:h-[80%] xl:h-[90%] 3xl:h-full absolute top-1/2 -translate-y-1/2 left-0 lg:left-[6%] 3xl:left-[7%] -z-10 ${
+        className={`bg-black w-[5rem] hidden md:block md:w-[7rem] lg:w-[10rem] 3xl:w-[12rem] md:h-[90%] lg:h-[80%] xl:h-[90%] 3xl:h-full absolute top-1/2 -translate-y-1/2 left-0 lg:left-[6%] 3xl:left-[7%] -z-10 ${
           shouldAnimate ? "visible" : "visible"
         }`}
       ></div>
