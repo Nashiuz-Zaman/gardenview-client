@@ -26,7 +26,13 @@ const googleProvider = new GoogleAuthProvider();
 
 // auth provider jsx component starts here
 const AuthProvider = ({ children }) => {
-  // user state
+  // does user exist on database at the time of registration?
+  // chek this state
+  const [userExists, setUserExists] = useState(false);
+
+  console.log(userExists);
+
+  // current user state
   const [user, setUser] = useState(null);
 
   // app loading state
@@ -104,6 +110,8 @@ const AuthProvider = ({ children }) => {
     updateUserProfile,
     loginGoogle,
     checkIfUserIsLoggedIn,
+    userExists,
+    setUserExists,
   };
 
   return (

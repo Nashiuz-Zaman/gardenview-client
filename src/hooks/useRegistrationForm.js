@@ -4,16 +4,20 @@ import { useNavigate } from "react-router-dom";
 // custom hooks import
 import useAuthProvider from "./useAuthProvider";
 import useLoginRegistrationProvider from "./useLoginRegistrationProvider";
-import axios from "axios";
+import useAxiosPublic from "./../hooks/useAxiosPublic";
 
+// img bb api related
 const imageUploadAPIKey = import.meta.env.VITE_imgbbApiKey;
 const imageUploadAPI = `https://api.imgbb.com/1/upload?key=${imageUploadAPIKey}`;
 
 // custom hook body starts here
 const useRegistrationForm = () => {
   // extract functions from auth context
-  const { signup, updateUserProfile, setAppLoading, logout } =
+  const { signup, updateUserProfile, setAppLoading, logout, setUserExists } =
     useAuthProvider();
+
+  // axios extraction
+  const axiosPublic = useAxiosPublic();
 
   // extract functions from login and registration context
   const {
@@ -84,31 +88,52 @@ const useRegistrationForm = () => {
 
     // only proceed to firebase when the errors are 0
     if (registrationInfo.errors.length === 0) {
-      // upload image to imgbb first
-      const image = { image: registrationInfo.photoFile };
-      const res = await axios.post(imageUploadAPI, image, {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
+      const userExistsResponse = await axiosPublic.post("/checkUserExists", {
+        email: registrationInfo.email,
       });
 
-      // if upload to imgbb is successful then sign up!
-      if (res.data.success) {
-        const result = await signup(
-          registrationInfo.email,
-          registrationInfo.password
-        );
-
-        console.log(result.user);
-
-        // after sign up
-        await updateUserProfile(
-          registrationInfo.username,
-          res.data.data.display_url
-        );
-
-        navigate("/");
+      // if user exists
+      if (userExistsResponse.data.userExists) {
+        setUserExists(true);
+        return;
       }
+
+      // upload image to imgbb first
+      // const image = { image: registrationInfo.photoFile };
+      // const res = await axiosPublic.post(imageUploadAPI, image, {
+      //   headers: {
+      //     "content-type": "multipart/form-data",
+      //   },
+      // });
+
+      // if upload to imgbb is successful then sign up!
+      // if (res.data.success) {
+      //   signup(registrationInfo.email, registrationInfo.password)
+      //     // if successful
+      //     .then(async () => {
+      //       // after sign up update the profile
+      //       await updateUserProfile(
+      //         registrationInfo.username,
+      //         res.data.data.display_url
+      //       );
+      //     })
+      //     // if error occurs
+      //     .catch((error) => console.log(error));
+
+      //   if (result.user) {
+      //     // user object to send to the api to save
+      //     const user = {
+      //       name: registrationInfo.username,
+      //       email: registrationInfo.email,
+      //       role: "user",
+      //     };
+
+      //     // create user api call
+      //     const userCreationResult = await axiosPublic.post("/users", user);
+
+      //     console.log(userCreationResult.data);
+      //   }
+      // }
 
       // signup(registrationInfo.email, registrationInfo.password)
       //   .then(() => {
