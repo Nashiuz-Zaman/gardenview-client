@@ -144,41 +144,6 @@ const useRegistrationForm = () => {
           }
         }
       }
-
-      // signup(registrationInfo.email, registrationInfo.password)
-      //   .then(() => {
-      //     updateUserProfile(
-      //       registrationInfo.username,
-      //       registrationInfo.photoUrl
-      //     )
-      //       .then(() => {
-      //         // after successful registration logout and redirect user to login page
-      //         logout().then(() => {
-      //           // if registration successful then show success toast first and then set timer to navigate to home page after a certain time
-      //           setRegistrationInfo((prev) => {
-      //             return { ...prev, showSuccessToast: true };
-      //           });
-      //           // set the timer and clear the timer
-      //           const timer = setTimeout(() => {
-      //             setRegistrationInfo((prev) => {
-      //               return { ...prev, showSuccessToast: false };
-      //             });
-      //             navigate("/login");
-      //             clearTimeout(timer);
-      //           }, 2100);
-      //         });
-      //       })
-      //       // handle error
-      //       .catch((error) => {
-      //         console.error(error);
-      //         setAppLoading(false);
-      //       });
-      //   })
-      //   // handle error
-      //   .catch((error) => {
-      //     console.error(error);
-      //     setAppLoading(false);
-      //   });
     }
   };
 

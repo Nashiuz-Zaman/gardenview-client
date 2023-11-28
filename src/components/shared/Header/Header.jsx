@@ -57,12 +57,7 @@ const Header = () => {
 
             {/* if app is finished loading and there is YES user */}
             {/* show the userprofile */}
-            {!appLoading && user && (
-              <>
-                <UserProfile authUser={user} />
-                <ButtonBtn text="logout" onClickFunction={logout} />
-              </>
-            )}
+            {!appLoading && user && <UserProfile authUser={user} />}
 
             {/* for small sizes like tablet and mobile show this part */}
             {!computerScreenMatches && (
