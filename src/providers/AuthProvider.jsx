@@ -27,9 +27,13 @@ const googleProvider = new GoogleAuthProvider();
 // auth provider jsx component starts here
 const AuthProvider = ({ children }) => {
   // does user exist on database at the time of registration?
-  // chek this state
+  // check this state
   const [userExists, setUserExists] = useState(false);
 
+  // what kind of user role user/member/admin
+  const [userRole, setUserRole] = useState(null);
+
+  console.log(userRole);
   // current user state
   const [user, setUser] = useState(null);
 
@@ -65,6 +69,8 @@ const AuthProvider = ({ children }) => {
   // user logout function
   const logout = () => {
     setAppLoading(true);
+    setUserRole(null);
+    localStorage.removeItem("token");
     return signOut(auth);
   };
 
@@ -110,6 +116,8 @@ const AuthProvider = ({ children }) => {
     checkIfUserIsLoggedIn,
     userExists,
     setUserExists,
+    userRole,
+    setUserRole,
   };
 
   return (

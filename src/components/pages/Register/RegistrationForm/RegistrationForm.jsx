@@ -96,11 +96,12 @@ const RegistrationForm = () => {
           />
         </div>
 
+        {/* show errors here */}
         {registrationInfo.errors.length > 0 && formSubmitted && (
           <div className="space-y-4 mt-4">
             {registrationInfo.errors.map((error) => {
               return (
-                <p key={error} className="text-sm text-red-600">
+                <p key={error} className="text-sm font-semibold text-red-600">
                   *{error}
                 </p>
               );

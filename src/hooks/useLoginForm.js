@@ -5,11 +5,14 @@ import { useLocation } from "react-router-dom";
 // custom hook
 import useAuthProvider from "./useAuthProvider";
 import useLoginRegistrationProvider from "./useLoginRegistrationProvider";
-// import useControlCookie from "./useControlCookie";
+import useAxiosPublic from "./useAxiosPublic";
 
 const useLoginForm = () => {
   // extract functions from auth context
-  const { login, setAppLoading, loginGoogle } = useAuthProvider();
+  const { login, setAppLoading, loginGoogle, setUserRole } = useAuthProvider();
+
+  // axios
+  const axiosPublic = useAxiosPublic();
 
   // extract different login and registration related states from this hook
   const { loginInfo, setLoginInfo } = useLoginRegistrationProvider();
@@ -77,52 +80,44 @@ const useLoginForm = () => {
   };
 
   // handle normal login
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setLoginInfo((prev) => {
       return { ...prev, loginError: "" };
     });
 
-    login(loginInfo.email, loginInfo.password)
-      .then(() => {
-        // if login is successful send post request to backend's jwt api to create a jwt token
-        // createCookie(loginInfo.email);
+    try {
+      const result = await login(loginInfo.email, loginInfo.password);
 
-        // if login successful then show success toast first and then set timer to navigate to the target page after a certain time
-        setLoginInfo((prev) => {
-          return { ...prev, showSuccessToast: true };
+      //  if firebase login is successful, check database for user role
+      if (result.user) {
+        const loginResponse = await axiosPublic.post("/login", {
+          email: result.user.email,
         });
 
-        // set the timer and clear the timer
-        const timer = setTimeout(() => {
-          setLoginInfo((prev) => {
-            return { ...prev, showSuccessToast: false };
-          });
+        // set users role to a central role first when they login in the app anytime! BELOW
 
-          // if there is state navigate to that state or navigate to home page
-          if (state) {
-            navigate(state);
-          } else {
-            navigate("/");
-          }
+        // set user's role and the jwt token in the localstorage
+        setUserRole(loginResponse.data.role);
+        localStorage.setItem("token", loginResponse.data.token);
 
-          // clear the timeout
-          clearTimeout(timer);
-        }, 2100);
-      })
-
-      // handle error
-      .catch((error) => {
-        setLoginInfo((prev) => {
-          return {
-            ...prev,
-            error: "Email/Password doesn't match. Try again.",
-          };
-        });
-
-        console.error(error.message);
+        // send them wherever they were going
+        if (state) {
+          navigate(state);
+        } else {
+          navigate("/");
+        }
         setAppLoading(false);
+      }
+    } catch (error) {
+      setLoginInfo((prev) => {
+        return {
+          ...prev,
+          error: "Email/Password doesn't match. Try again.",
+        };
       });
+      setAppLoading(false);
+    }
   };
 
   return {

@@ -67,7 +67,9 @@ const LoginForm = () => {
 
         {/* show login errors here */}
         {loginInfo.error && (
-          <p className="mt-4 text-red-600 text-center">{loginInfo.error}</p>
+          <p className="mt-4 text-red-600 font-medium text-center">
+            {loginInfo.error}
+          </p>
         )}
 
         <ButtonBtn text="Log In" modifyClasses="w-full block mt-10 mb-4" />

@@ -13,7 +13,7 @@ const imageUploadAPI = `https://api.imgbb.com/1/upload?key=${imageUploadAPIKey}`
 // custom hook body starts here
 const useRegistrationForm = () => {
   // extract functions from auth context
-  const { signup, updateUserProfile, setAppLoading, logout, setUserExists } =
+  const { signup, updateUserProfile, setUserExists, setAppLoading } =
     useAuthProvider();
 
   // axios extraction
@@ -88,12 +88,14 @@ const useRegistrationForm = () => {
 
     // only proceed to firebase when the errors are 0
     if (registrationInfo.errors.length === 0) {
+      setAppLoading(true);
       const userExistsResponse = await axiosPublic.post("/checkUserExists", {
         email: registrationInfo.email,
       });
 
       // if user exists
       if (userExistsResponse.data.userExists) {
+        setAppLoading(false);
         setUserExists(true);
         return;
       } else {
@@ -125,7 +127,7 @@ const useRegistrationForm = () => {
               imageUploadResponse.data.data.display_url
             );
 
-            // user object to send to the api to save
+            // user object to send to the database to save
             const user = {
               name: registrationInfo.username,
               email: registrationInfo.email,
@@ -135,11 +137,12 @@ const useRegistrationForm = () => {
             // create user api call
             const userCreationResponse = await axiosPublic.post("/users", user);
 
-            console.log(userCreationResponse.data);
+            // console.log(userCreationResponse.data);
             if (userCreationResponse.data.success) {
               localStorage.setItem("token", userCreationResponse.data.token);
 
               navigate("/");
+              setAppLoading(false);
             }
           }
         }

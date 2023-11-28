@@ -6,9 +6,10 @@ import RegistrationForm from "../RegistrationForm/RegistrationForm";
 import useAuthProvider from "../../../../hooks/useAuthProvider";
 import ButtonBtn from "../../../shared/ButtonBtn/ButtonBtn";
 import { Link } from "react-router-dom";
+import LoadingSpinner from "../../../shared/LoadingSpinner/LoadingSpinner";
 
 const Register = () => {
-  const { userExists, setUserExists } = useAuthProvider();
+  const { userExists, setUserExists, appLoading } = useAuthProvider();
 
   return (
     <div className="min-h-screen flex justify-center items-center">
@@ -18,8 +19,10 @@ const Register = () => {
           text="Welcome to Garden Views"
         />
 
+        {appLoading && <LoadingSpinner text="Registering" />}
+
         {/* if user doesn't exist then show the registration form */}
-        {!userExists && (
+        {!userExists && !appLoading && (
           <>
             <h2 className="capitalize mb-2 text-center text-2xl">
               Register your account
@@ -29,7 +32,7 @@ const Register = () => {
         )}
 
         {/* if user exists then show the user exists message */}
-        {userExists && (
+        {userExists && !appLoading && (
           <>
             <h2 className="mb-7 text-center text-2xl">User already exists</h2>
 
