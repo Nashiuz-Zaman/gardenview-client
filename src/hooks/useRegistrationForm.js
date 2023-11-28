@@ -96,44 +96,54 @@ const useRegistrationForm = () => {
       if (userExistsResponse.data.userExists) {
         setUserExists(true);
         return;
+      } else {
+        // if user doesn't exist
+        // upload image to imgbb first
+        const image = { image: registrationInfo.photoFile };
+        const imageUploadResponse = await axiosPublic.post(
+          imageUploadAPI,
+          image,
+          {
+            headers: {
+              "content-type": "multipart/form-data",
+            },
+          }
+        );
+
+        // if upload to imgbb is successful then proceed to sign up
+        if (imageUploadResponse.data.success) {
+          const signupResponse = await signup(
+            registrationInfo.email,
+            registrationInfo.password
+          );
+
+          // if firebase sign up successful update the profile first
+          if (signupResponse.user) {
+            // after sign up update the profile
+            await updateUserProfile(
+              registrationInfo.username,
+              imageUploadResponse.data.data.display_url
+            );
+
+            // user object to send to the api to save
+            const user = {
+              name: registrationInfo.username,
+              email: registrationInfo.email,
+              role: "user",
+            };
+
+            // create user api call
+            const userCreationResponse = await axiosPublic.post("/users", user);
+
+            console.log(userCreationResponse.data);
+            if (userCreationResponse.data.success) {
+              localStorage.setItem("token", userCreationResponse.data.token);
+
+              navigate("/");
+            }
+          }
+        }
       }
-
-      // upload image to imgbb first
-      // const image = { image: registrationInfo.photoFile };
-      // const res = await axiosPublic.post(imageUploadAPI, image, {
-      //   headers: {
-      //     "content-type": "multipart/form-data",
-      //   },
-      // });
-
-      // if upload to imgbb is successful then sign up!
-      // if (res.data.success) {
-      //   signup(registrationInfo.email, registrationInfo.password)
-      //     // if successful
-      //     .then(async () => {
-      //       // after sign up update the profile
-      //       await updateUserProfile(
-      //         registrationInfo.username,
-      //         res.data.data.display_url
-      //       );
-      //     })
-      //     // if error occurs
-      //     .catch((error) => console.log(error));
-
-      //   if (result.user) {
-      //     // user object to send to the api to save
-      //     const user = {
-      //       name: registrationInfo.username,
-      //       email: registrationInfo.email,
-      //       role: "user",
-      //     };
-
-      //     // create user api call
-      //     const userCreationResult = await axiosPublic.post("/users", user);
-
-      //     console.log(userCreationResult.data);
-      //   }
-      // }
 
       // signup(registrationInfo.email, registrationInfo.password)
       //   .then(() => {

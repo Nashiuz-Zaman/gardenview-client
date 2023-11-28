@@ -1,7 +1,6 @@
 // components
 import SectionHeading from "../../../shared/SectionHeading/SectionHeading";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
-import LinkBtn from "./../../../shared/LinkBtn/LinkBtn";
 
 // hook
 import useAuthProvider from "../../../../hooks/useAuthProvider";

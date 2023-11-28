@@ -30,8 +30,6 @@ const AuthProvider = ({ children }) => {
   // chek this state
   const [userExists, setUserExists] = useState(false);
 
-  console.log(userExists);
-
   // current user state
   const [user, setUser] = useState(null);
 
