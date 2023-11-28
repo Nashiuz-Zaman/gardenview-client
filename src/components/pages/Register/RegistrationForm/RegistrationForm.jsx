@@ -119,7 +119,11 @@ const RegistrationForm = () => {
 
       <p className="text-center">Or</p>
 
-      <GoogleLoginBtn onClickFunction={null} modifyClasses="w-max mx-auto" />
+      <GoogleLoginBtn
+        text="Sign up with Google"
+        onClickFunction={null}
+        modifyClasses="w-max mx-auto"
+      />
     </div>
   );
 };

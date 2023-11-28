@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { FcGoogle } from "react-icons/fc";
 
 const GoogleLoginBtn = ({
-  text = "Sign up with Google",
+  text = "Continue with Google",
   onClickFunction,
   modifyClasses = "",
 }) => {
