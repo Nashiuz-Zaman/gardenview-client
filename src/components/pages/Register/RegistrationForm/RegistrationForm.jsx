@@ -122,8 +122,11 @@ const RegistrationForm = () => {
       <GoogleLoginBtn
         text="Sign up with Google"
         onClickFunction={null}
-        modifyClasses="w-max mx-auto"
+        modifyClasses="w-max mx-auto mb-7"
       />
+      <Link to="/" className="block text-primary text-center hover:underline">
+        Go back to homepage
+      </Link>
     </div>
   );
 };
