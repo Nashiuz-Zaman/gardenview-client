@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 //  react icon import
 import { FaUserCircle } from "react-icons/fa";
 
-const UserProfile = ({ authUser }) => {
+const UserProfile = ({ authUser, logoutFunction }) => {
   // hover state
   const [showInfoPanel, setShowInfoPanel] = useState(false);
 
@@ -59,10 +59,13 @@ const UserProfile = ({ authUser }) => {
           }`}
         >
           <p>{name}</p>
-          <Link className="block">Dashboard</Link>
+          <Link className="block hover:text-primary transition-all duration-200">
+            Dashboard
+          </Link>
           <ButtonBtn
+            onClickFunction={logoutFunction}
             text="Log Out"
-            modifyClasses="!p-0 bg-transparent !text-textPrimary border-0 hover:bg-transparent !text-base !text-left !w-full"
+            modifyClasses="!p-0 bg-transparent !text-textPrimary border-0 hover:bg-transparent !text-base !text-left !w-full hover:!text-primary font-bold"
           />
         </div>
       </div>
@@ -72,6 +75,7 @@ const UserProfile = ({ authUser }) => {
 
 UserProfile.propTypes = {
   authUser: PropTypes.object,
+  logoutFunction: PropTypes.func,
   justImage: PropTypes.bool,
 };
 

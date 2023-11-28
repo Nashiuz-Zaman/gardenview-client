@@ -6,7 +6,6 @@ import LinkBtn from "./../../shared/LinkBtn/LinkBtn";
 import MobileMenuBtn from "./../MobileMenuBtn/MobileMenuBtn";
 import MobileNav from "./../MobileNav/MobileNav";
 import UserProfile from "./../UserProfile/UserProfile";
-import ButtonBtn from "./../ButtonBtn/ButtonBtn";
 
 // hooks
 import useMediaQueryContext from "./../../../hooks/useMediaQueryContext";
@@ -57,7 +56,9 @@ const Header = () => {
 
             {/* if app is finished loading and there is YES user */}
             {/* show the userprofile */}
-            {!appLoading && user && <UserProfile authUser={user} />}
+            {!appLoading && user && (
+              <UserProfile authUser={user} logoutFunction={logout} />
+            )}
 
             {/* for small sizes like tablet and mobile show this part */}
             {!computerScreenMatches && (
