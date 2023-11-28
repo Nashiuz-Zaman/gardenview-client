@@ -7,7 +7,7 @@ import useIntersectionObserver from "./useIntersectionObserver";
 const useDetectElementIntersection = (ref, threshold = 0) => {
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
-  console.log(shouldAnimate);
+  // console.log(shouldAnimate);
 
   const { entry, observer } = useIntersectionObserver(ref, threshold);
 
