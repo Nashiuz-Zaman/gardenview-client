@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 // custom hooks import
 import useRegistrationForm from "../../../../hooks/useRegistrationForm";
+import useLoginForm from "../../../../hooks/useLoginForm";
 
 // shared component imports
 import ButtonBtn from "./../../../shared/ButtonBtn/ButtonBtn";
@@ -26,6 +27,9 @@ const RegistrationForm = () => {
     handleSubmit,
     formSubmitted,
   } = useRegistrationForm();
+
+  // take the google login function from login hook
+  const { handleLoginGoogle } = useLoginForm();
 
   // use the effect's clean up function to empty the registration fields
   useEffect(() => {
@@ -122,7 +126,7 @@ const RegistrationForm = () => {
 
       <GoogleLoginBtn
         text="Sign up with Google"
-        onClickFunction={null}
+        onClickFunction={handleLoginGoogle}
         modifyClasses="w-max mx-auto mb-7"
       />
       <Link to="/" className="block text-primary text-center hover:underline">

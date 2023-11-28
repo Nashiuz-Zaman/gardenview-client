@@ -37,46 +37,70 @@ const useLoginForm = () => {
   };
 
   // handle google sign in
-  const handleLoginGoogle = () => {
-    loginGoogle()
-      .then((result) => {
-        // get user email from result
-        const email = result.user.email;
+  const handleLoginGoogle = async () => {
+    const result = await loginGoogle();
 
-        // if login is successful send post request to jwt api to create jwt token
-        // createCookie(email);
+    // if google login is succesful send the google user object to the database to check role and existence and also to make a jwt token
+    if (result.user) {
+      const googleUser = {
+        name: result.user.displayName,
+        email: result.user.email,
+      };
 
-        // if login successful then show success toast first and then set timer to navigate to the target page after a certain time
-        setLoginInfo((prev) => {
-          return { ...prev, showSuccessToast: true };
-        });
+      const googleLoginResponse = await axiosPublic.post(
+        "/google-login",
+        googleUser
+      );
 
-        // set the timer and clear the timer
-        const timer = setTimeout(() => {
-          setLoginInfo((prev) => {
-            return { ...prev, showSuccessToast: false };
-          });
+      if (googleLoginResponse.data.success) {
+        // if google login was successful set the jwt token and the user role
+        localStorage.setItem("token", googleLoginResponse.data.token);
+        setUserRole(googleLoginResponse.data.role);
 
-          // if there is state navigate to that state or navigate to home page
-          if (state) {
-            navigate(state);
-          } else {
-            navigate("/");
-          }
-
-          // clear the timeout
-          clearTimeout(timer);
-        }, 2100);
-      })
-      // handle error
-      .catch((error) => {
-        console.error(error);
-        setLoginInfo((prev) => {
-          return { ...prev, error: error.message };
-        });
+        if (state) {
+          navigate(state);
+        } else {
+          navigate("/");
+        }
 
         setAppLoading(false);
-      });
+      }
+    }
+
+    // loginGoogle()
+    //   .then((result) => {
+    //     // get user email from result
+    //     const email = result.user.email;
+
+    //     // if login is successful send post request to jwt api to create jwt token
+    //     // createCookie(email);
+
+    //     // if login successful then show success toast first and then set timer to navigate to the target page after a certain time
+    //     setLoginInfo((prev) => {
+    //       return { ...prev, showSuccessToast: true };
+    //     });
+
+    //     // set the timer and clear the timer
+    //     const timer = setTimeout(() => {
+    //       setLoginInfo((prev) => {
+    //         return { ...prev, showSuccessToast: false };
+    //       });
+
+    //       // if there is state navigate to that state or navigate to home page
+
+    //       // clear the timeout
+    //       clearTimeout(timer);
+    //     }, 2100);
+    //   })
+    //   // handle error
+    //   .catch((error) => {
+    //     console.error(error);
+    //     setLoginInfo((prev) => {
+    //       return { ...prev, error: error.message };
+    //     });
+
+    //     setAppLoading(false);
+    //   });
   };
 
   // handle normal login

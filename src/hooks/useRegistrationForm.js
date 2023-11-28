@@ -13,8 +13,13 @@ const imageUploadAPI = `https://api.imgbb.com/1/upload?key=${imageUploadAPIKey}`
 // custom hook body starts here
 const useRegistrationForm = () => {
   // extract functions from auth context
-  const { signup, updateUserProfile, setUserExists, setAppLoading } =
-    useAuthProvider();
+  const {
+    signup,
+    updateUserProfile,
+    setUserExists,
+    setAppLoading,
+    setUserRole,
+  } = useAuthProvider();
 
   // axios extraction
   const axiosPublic = useAxiosPublic();
@@ -139,6 +144,7 @@ const useRegistrationForm = () => {
 
             // console.log(userCreationResponse.data);
             if (userCreationResponse.data.success) {
+              setUserRole("user");
               localStorage.setItem("token", userCreationResponse.data.token);
 
               navigate("/");
