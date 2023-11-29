@@ -14,7 +14,7 @@ import useAuthProvider from "../../../hooks/useAuthProvider";
 // data
 import { navOptions } from "../../../nativeData/navigationOptions";
 
-const DashboardNav = ({ role = null }) => {
+const DashboardNav = ({ role = null, closeNavFunction }) => {
   // extract log out function
   const { logout } = useAuthProvider();
 
@@ -22,7 +22,10 @@ const DashboardNav = ({ role = null }) => {
     "text-white hover:text-primary text transition-all duration-150";
 
   return (
-    <div className="min-h-screen py-14 px-7 w-[15rem]">
+    <div
+      onClick={closeNavFunction}
+      className="min-h-screen py-14 px-7 w-[15rem]"
+    >
       {/* role specific links */}
       <div className="mb-20">
         {/* main heading */}
@@ -132,6 +135,7 @@ const DashboardNav = ({ role = null }) => {
 
 DashboardNav.propTypes = {
   role: PropTypes.any,
+  closeNavFunction: PropTypes.func,
 };
 
 export default DashboardNav;

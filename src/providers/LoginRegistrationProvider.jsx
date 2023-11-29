@@ -17,6 +17,7 @@ const LoginRegistratonProvider = ({ children }) => {
     photoFile: "",
     showSuccessToast: false,
     errors: [],
+    generalError: null,
   });
 
   // login STATES

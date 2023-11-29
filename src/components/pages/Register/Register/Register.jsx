@@ -1,15 +1,37 @@
+// react imports
+import { useEffect } from "react";
+
 // components
 import SectionHeading from "../../../shared/SectionHeading/SectionHeading";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
+import ButtonBtn from "../../../shared/ButtonBtn/ButtonBtn";
+import LoadingSpinner from "../../../shared/LoadingSpinner/LoadingSpinner";
+
+// react router
+import { Link } from "react-router-dom";
 
 // hook
 import useAuthProvider from "../../../../hooks/useAuthProvider";
-import ButtonBtn from "../../../shared/ButtonBtn/ButtonBtn";
-import { Link } from "react-router-dom";
-import LoadingSpinner from "../../../shared/LoadingSpinner/LoadingSpinner";
+import useLoginRegistrationProvider from "../../../../hooks/useLoginRegistrationProvider";
 
 const Register = () => {
   const { userExists, setUserExists, appLoading } = useAuthProvider();
+  const { setRegistrationInfo } = useLoginRegistrationProvider();
+
+  // use the effect's clean up function to empty the registration fields
+  useEffect(() => {
+    return () => {
+      setRegistrationInfo({
+        email: "",
+        password: "",
+        username: "",
+        photoFile: "",
+        showSuccessToast: false,
+        errors: [],
+        generalError: null,
+      });
+    };
+  }, [setRegistrationInfo]);
 
   return (
     <div className="min-h-screen flex justify-center items-center">

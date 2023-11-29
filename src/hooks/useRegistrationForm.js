@@ -85,72 +85,97 @@ const useRegistrationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormSubmitted(true);
+    setRegistrationInfo((prev) => {
+      return { ...prev, generalError: null };
+    });
 
-    // only proceed to firebase when the errors are 0
-    if (registrationInfo.errors.length === 0) {
-      setAppLoading(true);
-      const userExistsResponse = await axiosPublic.post("/checkUserExists", {
-        email: registrationInfo.email,
-      });
+    try {
+      // only proceed to firebase when the errors are 0
+      if (registrationInfo.errors.length === 0) {
+        setAppLoading(true);
+        const userExistsResponse = await axiosPublic.post("/checkUserExists", {
+          email: registrationInfo.email,
+        });
 
-      // if user exists
-      if (userExistsResponse.data.userExists) {
-        setAppLoading(false);
-        setUserExists(true);
-        return;
-      } else {
-        // if user doesn't exist
-        // upload image to imgbb first
-        const image = { image: registrationInfo.photoFile };
-        const imageUploadResponse = await axiosPublic.post(
-          imageUploadAPI,
-          image,
-          {
-            headers: {
-              "content-type": "multipart/form-data",
-            },
-          }
-        );
-
-        // if upload to imgbb is successful then proceed to sign up
-        if (imageUploadResponse.data.success) {
-          const signupResponse = await signup(
-            registrationInfo.email,
-            registrationInfo.password
+        // if user exists
+        if (userExistsResponse.data.userExists) {
+          setAppLoading(false);
+          setUserExists(true);
+          return;
+        } else {
+          // if user doesn't exist
+          // upload image to imgbb first
+          const image = { image: registrationInfo.photoFile };
+          const imageUploadResponse = await axiosPublic.post(
+            imageUploadAPI,
+            image,
+            {
+              headers: {
+                "content-type": "multipart/form-data",
+              },
+            }
           );
 
-          // if firebase sign up successful update the profile first
-          if (signupResponse.user) {
-            // after sign up update the profile
-            await updateUserProfile(
-              registrationInfo.username,
-              imageUploadResponse.data.data.display_url
+          // if upload to imgbb is successful then proceed to sign up
+          if (imageUploadResponse.data.success) {
+            const signupResponse = await signup(
+              registrationInfo.email,
+              registrationInfo.password
             );
 
-            // user object to send to the database to save
-            const user = {
-              name: registrationInfo.username,
-              email: registrationInfo.email,
-              role: "user",
-              agreementDate: "none",
-              rentedApt: {
-                floor: "none",
-                block: "none",
-                aptNo: "none",
-              },
-            };
+            // if firebase sign up successful update the profile first
+            if (signupResponse.user) {
+              // after sign up update the profile
+              await updateUserProfile(
+                registrationInfo.username,
+                imageUploadResponse.data.data.display_url
+              );
 
-            // create user api call
-            const userCreationResponse = await axiosPublic.post("/users", user);
+              // user object to send to the database to save
+              const user = {
+                name: registrationInfo.username,
+                email: registrationInfo.email,
+                role: "user",
+                agreementDate: "none",
+                rentedApt: {
+                  floor: "none",
+                  block: "none",
+                  aptNo: "none",
+                },
+              };
 
-            // console.log(userCreationResponse.data);
-            if (userCreationResponse.data.success) {
-              localStorage.setItem("token", userCreationResponse.data.token);
+              // create user api call
+              const userCreationResponse = await axiosPublic.post(
+                "/users",
+                user
+              );
 
-              navigate("/");
+              // console.log(userCreationResponse.data);
+              if (userCreationResponse.data.success) {
+                localStorage.setItem("token", userCreationResponse.data.token);
+
+                navigate("/");
+              }
             }
           }
         }
+      }
+    } catch (error) {
+      if (error) {
+        setAppLoading(false);
+
+        setRegistrationInfo((prev) => {
+          return {
+            ...prev,
+            email: "",
+            password: "",
+            username: "",
+            photoFile: "",
+            showSuccessToast: false,
+            errors: [],
+            generalError: "Error with registration, please try again",
+          };
+        });
       }
     }
   };

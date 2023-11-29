@@ -1,6 +1,3 @@
-// react imports
-import { useEffect } from "react";
-
 // react icons
 import { IoCloudUpload } from "react-icons/io5";
 
@@ -19,7 +16,6 @@ import FileUploadBtn from "../../../shared/FileUploadBtn/FileUploadBtn";
 const RegistrationForm = () => {
   const {
     registrationInfo,
-    setRegistrationInfo,
     getUsername,
     getEmail,
     getPassword,
@@ -30,20 +26,6 @@ const RegistrationForm = () => {
 
   // take the google login function from login hook
   const { handleLoginGoogle } = useLoginForm();
-
-  // use the effect's clean up function to empty the registration fields
-  useEffect(() => {
-    return () => {
-      setRegistrationInfo({
-        email: "",
-        password: "",
-        username: "",
-        photoFile: "",
-        showSuccessToast: false,
-        errors: [],
-      });
-    };
-  }, [setRegistrationInfo]);
 
   // common styles for input and label jsx elements
   const inputClasses =
@@ -110,6 +92,14 @@ const RegistrationForm = () => {
                 </p>
               );
             })}
+          </div>
+        )}
+
+        {registrationInfo.generalError !== null && (
+          <div className="mt-4">
+            <p className="text-sm text-center font-semibold text-red-600">
+              *{registrationInfo.generalError}
+            </p>
           </div>
         )}
 

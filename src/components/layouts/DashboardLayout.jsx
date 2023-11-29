@@ -16,19 +16,28 @@ import InnerContainer from "./../containers/InnerContainer/InnerContainer";
 import useMediaQueryContext from "../../hooks/useMediaQueryContext";
 
 function DashboardLayout() {
+  // style according to screen sizes
   const { computerScreenMatches } = useMediaQueryContext();
 
+  // nav open and close state
   const [navExpand, setNavExpand] = useState(
     computerScreenMatches ? true : false
   );
   const { userRole } = useAuthProvider();
 
+  // update screen state if screen changes to small screen
   useEffect(() => {
     setNavExpand(computerScreenMatches ? true : false);
   }, [computerScreenMatches]);
 
   const handleNavToggle = () => {
     setNavExpand((prev) => !prev);
+  };
+
+  const handleCloseNav = (e) => {
+    if (e.target.tagName === "A") {
+      setNavExpand(false);
+    }
   };
 
   const transitionClasses = "transition-all duration-500 ease-out";
@@ -45,7 +54,7 @@ function DashboardLayout() {
           } ${transitionClasses}`}
         >
           {/* dashboard nav */}
-          <DashboardNav role={userRole} />
+          <DashboardNav role={userRole} closeNavFunction={handleCloseNav} />
 
           {/* toggle button */}
           <button
