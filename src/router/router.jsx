@@ -12,13 +12,16 @@ import ErrorPage from "./../components/pages/ErrorPage/ErrorPage";
 import Login from "../components/pages/Login/Login/Login";
 import Register from "../components/pages/Register/Register/Register";
 import Welcome from "./../components/pages/Welcome/Welcome";
+import Apartments from "../components/pages/Apartments/Apartments/Apartments";
 
 // user pages
 import UserProfilePage from "../components/pages/UserProfilePage/UserProfilePage";
 
+// member pages
+import MemberProfilePage from "../components/pages/MemberProfilePage/MemberProfilePage";
+
 // admin pages
 import AdminProfilePage from "../components/pages/AdminProfilePage/AdminProfilePage";
-import MemberProfilePage from "../components/pages/MemberProfilePage/MemberProfilePage";
 
 // route
 import PrivateRoute from "./../components/routes/PrivateRoute/PrivateRoute";
@@ -28,7 +31,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
-    children: [{ path: "/", element: <Home /> }],
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/apartments", element: <Apartments /> },
+    ],
   },
   {
     path: "/auth",

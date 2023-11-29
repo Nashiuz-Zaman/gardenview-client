@@ -13,17 +13,24 @@ import MediaQueryContextProvider from "./providers/MediaQueryContext";
 import AuthProvider from "./Providers/AuthProvider";
 import LoginRegistratonProvider from "./Providers/LoginRegistrationProvider";
 
+// tanstack import
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 // style import
 import "./index.css";
 
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <MediaQueryContextProvider>
-      <AuthProvider>
-        <LoginRegistratonProvider>
-          <RouterProvider router={router}></RouterProvider>
-        </LoginRegistratonProvider>
-      </AuthProvider>
-    </MediaQueryContextProvider>
+    <QueryClientProvider client={queryClient}>
+      <MediaQueryContextProvider>
+        <AuthProvider>
+          <LoginRegistratonProvider>
+            <RouterProvider router={router}></RouterProvider>
+          </LoginRegistratonProvider>
+        </AuthProvider>
+      </MediaQueryContextProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
