@@ -1,6 +1,3 @@
-// react imports
-import { useEffect } from "react";
-
 // react router import
 import { Link } from "react-router-dom";
 
@@ -12,25 +9,8 @@ import GoogleLoginBtn from "../../../shared/GoogleLoginBtn/GoogleLoginBtn";
 import useLoginForm from "../../../../hooks/useLoginForm";
 
 const LoginForm = () => {
-  const {
-    loginInfo,
-    setLoginInfo,
-    getEmail,
-    getPassword,
-    handleLogin,
-    handleLoginGoogle,
-  } = useLoginForm();
-
-  useEffect(() => {
-    return () => {
-      setLoginInfo({
-        email: "",
-        password: "",
-        showSuccessToast: false,
-        error: "",
-      });
-    };
-  }, [setLoginInfo]);
+  const { loginInfo, getEmail, getPassword, handleLogin, handleLoginGoogle } =
+    useLoginForm();
 
   // common styles for input and label jsx elements
   const inputClasses =
