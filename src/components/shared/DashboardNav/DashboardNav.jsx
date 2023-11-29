@@ -22,7 +22,8 @@ const DashboardNav = ({ role = null }) => {
     "text-white hover:text-primary text transition-all duration-150";
 
   return (
-    <div className="bg-black h-full pt-14 px-7">
+    <div className="min-h-screen bg-black pt-14 px-7 w-[15rem]">
+      {/* role specific links */}
       <div className="mb-20">
         {/* main heading */}
         <h2 className="text-white text-xl mb-7">Dashboard</h2>
@@ -39,7 +40,7 @@ const DashboardNav = ({ role = null }) => {
           {role === "user" && (
             <>
               <li>
-                <Link className={linkClasses} to="/dashboard">
+                <Link className={linkClasses} to="/dashboard/user/profile">
                   My Profile
                 </Link>
               </li>
@@ -112,7 +113,7 @@ const DashboardNav = ({ role = null }) => {
 
       {/* common links */}
       <div className="mb-20">
-        <h2 className="text-white text-xl mb-7 ">Website</h2>
+        <h2 className="text-white text-xl mb-7">Website</h2>
 
         {navOptions && (
           <ListOfLinks

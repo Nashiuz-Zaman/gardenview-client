@@ -25,6 +25,7 @@ export default {
         textMediumLight: "#1c1b1bcc",
         textLight: "#1c1b1b99",
         lightGray: "#f5f5f5",
+        lightBorder: "#ddd",
       },
       fontFamily: {
         default: "'Open Sans', sans-serif;",

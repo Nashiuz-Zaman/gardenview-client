@@ -13,6 +13,9 @@ import Login from "../components/pages/Login/Login/Login";
 import Register from "../components/pages/Register/Register/Register";
 import Welcome from "./../components/pages/Welcome/Welcome";
 
+// user pages
+import UserProfilePage from "../components/pages/UserProfilePage/UserProfilePage";
+
 // route
 import PrivateRoute from "./../components/routes/PrivateRoute/PrivateRoute";
 
@@ -39,7 +42,10 @@ const router = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
-    children: [{ path: "/dashboard", element: <Welcome /> }],
+    children: [
+      { path: "/dashboard", element: <Welcome /> },
+      { path: "/dashboard/user/profile", element: <UserProfilePage /> },
+    ],
   },
 ]);
 
