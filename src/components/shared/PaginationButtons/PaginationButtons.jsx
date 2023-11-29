@@ -17,8 +17,6 @@ const PaginationButtons = ({ pageCount, curPage, setCurPage }) => {
     }
   }, [pageCount, setButtons]);
 
-  console.log(buttons);
-
   return (
     <div className="flex items-center gap-2 justify-center">
       {curPage > 1 && (

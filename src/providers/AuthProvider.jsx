@@ -32,6 +32,12 @@ const AuthProvider = ({ children }) => {
   // what kind of user role user/member/admin
   const [userRole, setUserRole] = useState(null);
 
+  // should user exist
+  const [userExistInApp, setUserExistInApp] = useState(false);
+
+  //  user/members/admin  profile information
+  const [profileData, setProfileData] = useState(null);
+
   // current user state
   const [user, setUser] = useState(null);
 
@@ -41,13 +47,20 @@ const AuthProvider = ({ children }) => {
   // axios
   const axiosPublic = useAxiosPublic();
 
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setUserExistInApp(true);
+    }
+  }, []);
+
   // set up observer for users, if there an user, update the user state and set loading to false, if there is none set user to null and set loading to false
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, async (curUser) => {
       if (curUser) {
         setUser(curUser);
         // if userRole is not found do this
-        if (userRole === null) {
+
+        if (userRole === null && userExistInApp) {
           const roleCheckResponse = await axiosPublic.post("/role", {
             email: curUser.email,
           });
@@ -59,6 +72,7 @@ const AuthProvider = ({ children }) => {
           } else {
             // set role
             setUserRole(roleCheckResponse.data.user.role);
+            setProfileData(roleCheckResponse.data.user);
             setAppLoading(false);
           }
 
@@ -76,7 +90,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       unSubscribe();
     };
-  }, [userRole, axiosPublic]);
+  }, [userRole, axiosPublic, userExistInApp]);
 
   // does user exist on database at the time of registration?
   // check this state
@@ -111,7 +125,10 @@ const AuthProvider = ({ children }) => {
   // user logout function
   const logout = () => {
     setAppLoading(true);
+    setUserExistInApp(false);
+    setUser(null);
     setUserRole(null);
+    setProfileData(null);
     localStorage.removeItem("token");
     return signOut(auth);
   };
@@ -128,11 +145,14 @@ const AuthProvider = ({ children }) => {
     login,
     updateUserProfile,
     loginGoogle,
-
     userExists,
     setUserExists,
     userRole,
     setUserRole,
+    profileData,
+    setProfileData,
+    userExistInApp,
+    setUserExistInApp,
   };
 
   return (

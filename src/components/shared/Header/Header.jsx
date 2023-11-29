@@ -19,7 +19,7 @@ import { navOptions } from "./../../../nativeData/navigationOptions";
 const Header = () => {
   // extra user from auth
   const { user, appLoading, logout } = useAuthProvider();
-  // console.log(user);
+
   // check screen size
   const { computerScreenMatches } = useMediaQueryContext();
 

@@ -9,7 +9,13 @@ import useAxiosPublic from "./useAxiosPublic";
 
 const useLoginForm = () => {
   // extract functions from auth context
-  const { login, setAppLoading, loginGoogle, setUserRole } = useAuthProvider();
+  const {
+    login,
+    setAppLoading,
+    loginGoogle,
+    setUserExistInApp,
+    setProfileData,
+  } = useAuthProvider();
 
   // axios
   const axiosPublic = useAxiosPublic();
@@ -42,6 +48,9 @@ const useLoginForm = () => {
 
     // if google login is succesful send the google user object to the database to check role and existence and also to make a jwt token
     if (result.user) {
+      // user exist in app, I meant user should exist in app
+      setUserExistInApp(true);
+
       const googleUser = {
         name: result.user.displayName,
         email: result.user.email,
@@ -52,10 +61,11 @@ const useLoginForm = () => {
         googleUser
       );
 
+      // if user already exists in mongodb this will return just the role or else the whole newly created user object from mongodb
       if (googleLoginResponse.data.success) {
-        // if google login was successful set the jwt token and the user role
+        setProfileData(googleLoginResponse.data.user);
+        // if google login was successful set the jwt token
         localStorage.setItem("token", googleLoginResponse.data.token);
-        setUserRole(googleLoginResponse.data.role);
 
         if (state) {
           navigate(state);
@@ -77,10 +87,10 @@ const useLoginForm = () => {
 
     try {
       const result = await login(loginInfo.email, loginInfo.password);
-      console.log(result);
 
       //  if firebase login is successful, check database for user role
       if (result.user) {
+        setUserExistInApp(true);
         const loginResponse = await axiosPublic.post("/login", {
           email: result.user.email,
         });
@@ -88,7 +98,8 @@ const useLoginForm = () => {
         // set users role to a central role first when they login in the app anytime! BELOW
 
         // set user's role and the jwt token in the localstorage
-        setUserRole(loginResponse.data.role);
+        // setUserRole(loginResponse.data.role);
+
         localStorage.setItem("token", loginResponse.data.token);
 
         // send them wherever they were going

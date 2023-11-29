@@ -35,8 +35,10 @@ function DashboardLayout() {
   };
 
   const handleCloseNav = (e) => {
-    if (e.target.tagName === "A") {
-      setNavExpand(false);
+    if (!computerScreenMatches) {
+      if (e.target.tagName === "A") {
+        setNavExpand(false);
+      }
     }
   };
 
