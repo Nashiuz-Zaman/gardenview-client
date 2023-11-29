@@ -59,7 +59,10 @@ const UserProfile = ({ authUser, logoutFunction }) => {
           }`}
         >
           <p>{name}</p>
-          <Link className="block hover:text-primary transition-all duration-200">
+          <Link
+            to="/dashboard"
+            className="block hover:text-primary transition-all duration-200"
+          >
             Dashboard
           </Link>
           <ButtonBtn

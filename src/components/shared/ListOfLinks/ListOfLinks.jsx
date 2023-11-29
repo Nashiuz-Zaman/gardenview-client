@@ -5,9 +5,12 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
-const ListOfLinks = ({ linksData = null, modifyClasses = "" }) => {
-  const linkClasses =
-    "transition all duration-200 text-white hover:text-primary hover:underline";
+const ListOfLinks = ({
+  linksData = null,
+  modifyClasses = "",
+  linksModifyClasses = "",
+}) => {
+  const linkClasses = `transition all duration-200 text-white hover:text-primary hover:underline ${linksModifyClasses}`;
 
   return (
     <ul className={`flex flex-col gap-2 ${modifyClasses}`}>
@@ -42,6 +45,7 @@ const ListOfLinks = ({ linksData = null, modifyClasses = "" }) => {
 
 ListOfLinks.propTypes = {
   linksData: PropTypes.array,
+  linksModifyClasses: PropTypes.string,
   modifyClasses: PropTypes.string,
 };
 

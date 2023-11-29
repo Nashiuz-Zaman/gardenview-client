@@ -24,12 +24,11 @@ const auth = getAuth(app);
 // create google provider instance
 const googleProvider = new GoogleAuthProvider();
 
-// auth provider jsx component starts here
-const AuthProvider = ({ children }) => {
-  // does user exist on database at the time of registration?
-  // check this state
-  const [userExists, setUserExists] = useState(false);
+// hooks
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
+// auth provider starts here
+const AuthProvider = ({ children }) => {
   // what kind of user role user/member/admin
   const [userRole, setUserRole] = useState(null);
 
@@ -39,6 +38,43 @@ const AuthProvider = ({ children }) => {
 
   // app loading state
   const [appLoading, setAppLoading] = useState(true);
+
+  // axios
+  const axiosPublic = useAxiosPublic();
+
+  // set up observer for users, if there an user, update the user state and set loading to false, if there is none set user to null and set loading to false
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, async (curUser) => {
+      if (curUser) {
+        setUser(curUser);
+        // if userRole is not found do this
+        if (userRole === null) {
+          const roleCheckResponse = await axiosPublic.post("/role", {
+            email: curUser.email,
+          });
+
+          // set role
+          setUserRole(roleCheckResponse.data.user.role);
+          setAppLoading(false);
+          return;
+        } else {
+          setAppLoading(false);
+        }
+      } else {
+        setAppLoading(false);
+        setUser(null);
+      }
+    });
+
+    // clean up function for disconnecting the listener/observer
+    return () => {
+      unSubscribe();
+    };
+  }, [userRole, axiosPublic]);
+
+  // does user exist on database at the time of registration?
+  // check this state
+  const [userExists, setUserExists] = useState(false);
 
   // login with google function
   const loginGoogle = () => {
@@ -73,24 +109,6 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
     return signOut(auth);
   };
-
-  // set up observer for users, if there an user, update the user state and set loading to false, if there is none set user to null and set loading to false
-  useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (curUser) => {
-      if (curUser) {
-        setAppLoading(false);
-        setUser(curUser);
-      } else {
-        setAppLoading(false);
-        setUser(null);
-      }
-    });
-
-    // clean up function for disconnecting the listener/observer
-    return () => {
-      unSubscribe();
-    };
-  }, []);
 
   // check if user should be logged in by verifying the token
   const checkIfUserIsLoggedIn = () => {
