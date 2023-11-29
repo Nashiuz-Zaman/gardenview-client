@@ -32,7 +32,6 @@ const AuthProvider = ({ children }) => {
   // what kind of user role user/member/admin
   const [userRole, setUserRole] = useState(null);
 
-  console.log(userRole);
   // current user state
   const [user, setUser] = useState(null);
 
@@ -53,9 +52,16 @@ const AuthProvider = ({ children }) => {
             email: curUser.email,
           });
 
-          // set role
-          setUserRole(roleCheckResponse.data.user.role);
-          setAppLoading(false);
+          // if cannot find user data in role check then it's the first time the user is registering as the data hasn't been written in data base yet. since its a new user, set role to basic "user"
+          if (roleCheckResponse.data.user === null) {
+            setUserRole("user");
+            setAppLoading(false);
+          } else {
+            // set role
+            setUserRole(roleCheckResponse.data.user.role);
+            setAppLoading(false);
+          }
+
           return;
         } else {
           setAppLoading(false);
@@ -110,15 +116,6 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  // check if user should be logged in by verifying the token
-  const checkIfUserIsLoggedIn = () => {
-    if (!user) {
-      return false;
-    }
-
-    return true;
-  };
-
   // pass all the necessary things to the context provider through an object
   const authObj = {
     user,
@@ -131,7 +128,7 @@ const AuthProvider = ({ children }) => {
     login,
     updateUserProfile,
     loginGoogle,
-    checkIfUserIsLoggedIn,
+
     userExists,
     setUserExists,
     userRole,

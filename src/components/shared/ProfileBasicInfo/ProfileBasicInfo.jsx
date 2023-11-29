@@ -16,16 +16,19 @@ const ProfileBasicInfo = ({ infoObject }) => {
       </div>
 
       {/* text information */}
-      <div className="border-l border-lightBorder py-3 px-7">
-        {/* heading */}
-        <h2 className="font-bold capitalize mb-2 text-xl">Profile ({role})</h2>
+      <div className="border-l border-lightBorder py-3 px-7 flex items-center">
+        <div>
+          {/* heading */}
+          <h2 className="font-bold capitalize mb-2 text-xl">
+            Profile ({role})
+          </h2>
 
-        {/* info */}
-        <div className="font-medium">
-          <p>
+          {/* info */}
+
+          <p className="font-medium">
             <span>Name:</span> {name}
           </p>
-          <p>
+          <p className="font-medium">
             <span>Email:</span> {email}
           </p>
         </div>

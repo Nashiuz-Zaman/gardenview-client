@@ -7,7 +7,7 @@ import Footer from "../shared/Footer/Footer";
 
 function RootLayout() {
   return (
-    <div className="text-textPrimary min-h-screen flex flex-col overflow-hidden max-w-[120rem] mx-auto font-default">
+    <div className="text-textPrimary min-h-screen flex flex-col overflow-x-hidden max-w-[120rem] mx-auto font-default">
       {/* header */}
       <div className="mb-sectionGapSm">
         <Header />

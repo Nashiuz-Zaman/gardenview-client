@@ -16,6 +16,10 @@ import Welcome from "./../components/pages/Welcome/Welcome";
 // user pages
 import UserProfilePage from "../components/pages/UserProfilePage/UserProfilePage";
 
+// admin pages
+import AdminProfilePage from "../components/pages/AdminProfilePage/AdminProfilePage";
+import MemberProfilePage from "../components/pages/MemberProfilePage/MemberProfilePage";
+
 // route
 import PrivateRoute from "./../components/routes/PrivateRoute/PrivateRoute";
 
@@ -44,7 +48,12 @@ const router = createBrowserRouter([
     ),
     children: [
       { path: "/dashboard", element: <Welcome /> },
+      // user routes
       { path: "/dashboard/user/profile", element: <UserProfilePage /> },
+      // member routes
+      { path: "/dashboard/member/profile", element: <MemberProfilePage /> },
+      // admin routes
+      { path: "/dashboard/admin/profile", element: <AdminProfilePage /> },
     ],
   },
 ]);

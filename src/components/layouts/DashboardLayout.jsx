@@ -1,5 +1,5 @@
 // react
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // react-router imports
 import { Outlet } from "react-router-dom";
@@ -13,10 +13,19 @@ import DashboardNav from "./../shared/DashboardNav/DashboardNav";
 // hooks
 import useAuthProvider from "./../../hooks/useAuthProvider";
 import InnerContainer from "./../containers/InnerContainer/InnerContainer";
+import useMediaQueryContext from "../../hooks/useMediaQueryContext";
 
 function DashboardLayout() {
-  const [navExpand, setNavExpand] = useState(true);
+  const { computerScreenMatches } = useMediaQueryContext();
+
+  const [navExpand, setNavExpand] = useState(
+    computerScreenMatches ? true : false
+  );
   const { userRole } = useAuthProvider();
+
+  useEffect(() => {
+    setNavExpand(computerScreenMatches ? true : false);
+  }, [computerScreenMatches]);
 
   const handleNavToggle = () => {
     setNavExpand((prev) => !prev);
@@ -25,13 +34,13 @@ function DashboardLayout() {
   const transitionClasses = "transition-all duration-500 ease-out";
 
   return (
-    <div className="text-textPrimary overflow-hidden max-w-[120rem] mx-auto font-default">
+    <div className="text-textPrimary overflow-x-hidden max-w-[120rem] mx-auto font-default">
       {/* dashboard nav and toggle button + main content */}
       <div className="min-h-screen relative">
         {/* dashboard nav + toggle button */}
         {/* translate only the size of the nav, don't include the button */}
         <div
-          className={`flex absolute top-0 left-0 min-h-screen ${
+          className={`bg-black flex absolute top-0 left-0 min-h-screen ${
             !navExpand && "-translate-x-[15rem]"
           } ${transitionClasses}`}
         >
@@ -44,7 +53,7 @@ function DashboardLayout() {
             className="flex justify-center min-h-screen items-center bg-textPrimary w-[1.5rem]"
           >
             <FaChevronLeft
-              className={`${transitionClasses} text-white text-lg ${
+              className={`${transitionClasses} text-white text ${
                 navExpand ? "rotate-0" : "rotate-[-180deg]"
               }`}
             />
@@ -52,16 +61,19 @@ function DashboardLayout() {
         </div>
 
         {/* set margin according to the size of the translate and the nav */}
-        <div
-          className={`${
-            navExpand ? "ml-[16.5rem]" : "ml-[1.5rem]"
-          } ${transitionClasses} pt-sectionGapSm`}
-        >
-          <InnerContainer>
+
+        <InnerContainer>
+          <div
+            className={`${
+              computerScreenMatches && navExpand
+                ? "ml-[16.5rem]"
+                : "ml-[1.5rem]"
+            } ${transitionClasses} pt-sectionGapSm`}
+          >
             {/* page content */}
             <Outlet />
-          </InnerContainer>
-        </div>
+          </div>
+        </InnerContainer>
       </div>
     </div>
   );

@@ -59,48 +59,13 @@ const useLoginForm = () => {
 
         if (state) {
           navigate(state);
+          setAppLoading(false);
         } else {
           navigate("/");
+          setAppLoading(false);
         }
-
-        setAppLoading(false);
       }
     }
-
-    // loginGoogle()
-    //   .then((result) => {
-    //     // get user email from result
-    //     const email = result.user.email;
-
-    //     // if login is successful send post request to jwt api to create jwt token
-    //     // createCookie(email);
-
-    //     // if login successful then show success toast first and then set timer to navigate to the target page after a certain time
-    //     setLoginInfo((prev) => {
-    //       return { ...prev, showSuccessToast: true };
-    //     });
-
-    //     // set the timer and clear the timer
-    //     const timer = setTimeout(() => {
-    //       setLoginInfo((prev) => {
-    //         return { ...prev, showSuccessToast: false };
-    //       });
-
-    //       // if there is state navigate to that state or navigate to home page
-
-    //       // clear the timeout
-    //       clearTimeout(timer);
-    //     }, 2100);
-    //   })
-    //   // handle error
-    //   .catch((error) => {
-    //     console.error(error);
-    //     setLoginInfo((prev) => {
-    //       return { ...prev, error: error.message };
-    //     });
-
-    //     setAppLoading(false);
-    //   });
   };
 
   // handle normal login
@@ -112,6 +77,7 @@ const useLoginForm = () => {
 
     try {
       const result = await login(loginInfo.email, loginInfo.password);
+      console.log(result);
 
       //  if firebase login is successful, check database for user role
       if (result.user) {
@@ -131,7 +97,6 @@ const useLoginForm = () => {
         } else {
           navigate("/");
         }
-        setAppLoading(false);
       }
     } catch (error) {
       setLoginInfo((prev) => {

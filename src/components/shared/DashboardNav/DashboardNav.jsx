@@ -22,7 +22,7 @@ const DashboardNav = ({ role = null }) => {
     "text-white hover:text-primary text transition-all duration-150";
 
   return (
-    <div className="min-h-screen bg-black pt-14 px-7 w-[15rem]">
+    <div className="min-h-screen py-14 px-7 w-[15rem]">
       {/* role specific links */}
       <div className="mb-20">
         {/* main heading */}
@@ -36,7 +36,7 @@ const DashboardNav = ({ role = null }) => {
             </Link>
           </li>
 
-          {/* if only user */}
+          {/* user links */}
           {role === "user" && (
             <>
               <li>
@@ -52,11 +52,11 @@ const DashboardNav = ({ role = null }) => {
             </>
           )}
 
-          {/* if member */}
+          {/* member links */}
           {role === "member" && (
             <>
               <li>
-                <Link className={linkClasses} to="/dashboard">
+                <Link className={linkClasses} to="/dashboard/member/profile">
                   My Profile
                 </Link>
               </li>
@@ -78,11 +78,11 @@ const DashboardNav = ({ role = null }) => {
             </>
           )}
 
-          {/* if admin */}
+          {/* admin links */}
           {role === "admin" && (
             <>
               <li>
-                <Link className={linkClasses} to="/dashboard">
+                <Link className={linkClasses} to="/dashboard/admin/profile">
                   Admin Profile
                 </Link>
               </li>
