@@ -7,7 +7,7 @@ import AgreementRequest from "./AgreementRequest/AgreementRequest";
 import useFlatsAgreementsProvider from "./../../../../hooks/useFlatsAgreementsProvider";
 
 const AgreementRequests = () => {
-  const { agreementsData, agreementsDataLoading, refetchAgreements } =
+  const { agreementsData, agreementsDataLoading } =
     useFlatsAgreementsProvider();
 
   return (
@@ -19,7 +19,7 @@ const AgreementRequests = () => {
         {agreementsDataLoading && <LoadingSpinner text="Agreements Loading" />}
 
         {agreementsData && (
-          <div className="bg-lightGray p-6 rounded-defaultLg">
+          <div className="space-y-5">
             {agreementsData.map((singleAgreement) => {
               return (
                 <AgreementRequest

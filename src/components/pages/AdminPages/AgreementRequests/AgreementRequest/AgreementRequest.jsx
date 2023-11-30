@@ -2,21 +2,17 @@
 import PropTypes from "prop-types";
 import ButtonBtn from "../../../../shared/ButtonBtn/ButtonBtn";
 
-// a. User name
-// b. User email
-// c. Floor no
-// d. Block name
-// e. Room no
-// f. Rent
-// g. Agreement request date
-// h. Accept button
-// i. Reject button
+// hook
+import useAxiosPrivate from "../../../../../hooks/useAxiosPrivate";
+import useFlatsAgreementsProvider from "../../../../../hooks/useFlatsAgreementsProvider";
 
 const AgreementRequest = ({ agreementsData }) => {
   const {
+    _id,
     name,
     email,
     floorNo,
+    flatId,
     blockName,
     apartmentNo,
     rent,
@@ -24,8 +20,67 @@ const AgreementRequest = ({ agreementsData }) => {
     agreementReqDate,
   } = agreementsData;
 
+  const { refetchAgreements, refetchFlats } = useFlatsAgreementsProvider();
+
+  const axiosPrivate = useAxiosPrivate();
+
+  const handleAccept = async (e) => {
+    e.preventDefault();
+
+    // step 1: update the agreement to checked
+    const update = { status: "checked" };
+    const res = await axiosPrivate.patch(`/agreements/${_id}`, update);
+
+    if (res.data.success) {
+      // step 2: refetch agreements
+      refetchAgreements();
+
+      // date string for agreement accept date
+      const dateStr = `${new Date().getDate()}-${
+        new Date().getMonth() + 1
+      }-${new Date().getFullYear()}`;
+
+      // step 3 update the user to member
+      // since accepted user data has to change
+      const updatedUser = {
+        role: "member",
+        agreementDate: dateStr,
+        rentedApt: {
+          floor: floorNo,
+          block: blockName,
+          aptNo: apartmentNo,
+        },
+      };
+
+      const res = await axiosPrivate.patch(`/users/${email}`, updatedUser);
+
+      if (res.data.success) {
+        console.log("user has been updated");
+      }
+    }
+  };
+
+  const handleReject = async (e) => {
+    e.preventDefault();
+    // step 1: update the agreement to checked
+    const update = { status: "checked" };
+    const res = await axiosPrivate.patch(`/agreements/${_id}`, update);
+    if (res.data.success) {
+      // step 2: refetch agreements
+      refetchAgreements();
+      // step 3: update flat to booked false
+      const updatedFlat = { booked: false };
+
+      const res = await axiosPrivate.patch(`/flats/${flatId}`, updatedFlat);
+      if (res.data.success) {
+        refetchFlats();
+        console.log("flat not booked anymore");
+      }
+    }
+  };
+
   return (
-    <div>
+    <div className="bg-lightGray p-6 rounded-defaultLg">
       <div className="space-y-2 mb-5">
         <p>
           <span className="font-bold">User Name: </span>
@@ -73,8 +128,13 @@ const AgreementRequest = ({ agreementsData }) => {
       {/* buttons */}
       {status === "pending" && (
         <div className="flex items-center gap-2">
-          <ButtonBtn text="Accept" modifyClasses="text-sm" />
           <ButtonBtn
+            text="Accept"
+            modifyClasses="text-sm"
+            onClickFunction={handleAccept}
+          />
+          <ButtonBtn
+            onClickFunction={handleReject}
             text="Reject"
             modifyClasses="text-sm bg-red-600 hover:bg-red-500 border border-red-600 hover:border-red-500"
           />

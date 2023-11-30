@@ -14,7 +14,7 @@ const Flat = ({ flatData }) => {
   // extract flat data
   const { _id, imageSource, floorNo, blockName, apartmentNo, rent } = flatData;
 
-  const { refetchFlats } = useFlatsAgreementsProvider();
+  const { refetchFlats, refetchAgreements } = useFlatsAgreementsProvider();
 
   // extract user data
   const { user, userRole, profileData } = useAuthProvider();
@@ -41,6 +41,7 @@ const Flat = ({ flatData }) => {
     const agreementRequest = {
       name: profileData.name,
       email: profileData.email,
+      flatId: _id,
       floorNo: floorNo,
       blockName: blockName,
       apartmentNo: apartmentNo,
@@ -54,7 +55,8 @@ const Flat = ({ flatData }) => {
 
     // if agreement request successfully sent then book the apartment and remove it from the list
     if (data.success) {
-      console.log("agreement request sent");
+      refetchAgreements();
+
       // change to booked
       const updateData = { booked: true };
       const { data } = await axiosPrivate.patch(`/flats/${_id}`, updateData);

@@ -45,13 +45,13 @@ function DashboardLayout() {
   const transitionClasses = "transition-all duration-500 ease-out";
 
   return (
-    <div className="text-textPrimary overflow-x-hidden max-w-[120rem] mx-auto font-default">
+    <div className="text-textPrimary overflow-x-hidden max-w-[120rem] mx-auto font-default min-h-screen h-full">
       {/* dashboard nav and toggle button + main content */}
-      <div className="min-h-screen relative">
+      <div className="min-h-screen h-full relative">
         {/* dashboard nav + toggle button */}
         {/* translate only the size of the nav, don't include the button */}
         <div
-          className={`bg-black flex absolute top-0 left-0 min-h-screen ${
+          className={`bg-black flex absolute top-0 left-0 min-h-screen h-full ${
             !navExpand && "-translate-x-[15rem]"
           } ${transitionClasses}`}
         >

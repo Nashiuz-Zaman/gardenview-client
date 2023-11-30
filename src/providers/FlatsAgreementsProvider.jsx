@@ -49,7 +49,7 @@ const FlatsAgreementsProvider = ({ children }) => {
   // fetch agreements data
   const {
     data: agreementsData,
-    agreementsDataLoading,
+    isLoading: agreementsDataLoading,
     refetch: refetchAgreements,
   } = useQuery({
     queryKey: ["agreements"],
