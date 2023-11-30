@@ -1,11 +1,11 @@
 // hooks
-import useAuthProvider from "../../../hooks/useAuthProvider";
+import useAuthProvider from "../../../../hooks/useAuthProvider";
 
 // components
-import ProfileBasicInfo from "../../shared/ProfileBasicInfo/ProfileBasicInfo";
-import RentalStats from "../../shared/RentalStats/RentalStats";
+import ProfileBasicInfo from "../../../shared/ProfileBasicInfo/ProfileBasicInfo";
+import RentalStats from "../../../shared/RentalStats/RentalStats";
 
-const UserProfilePage = () => {
+const MemberProfilePage = () => {
   const { user, userRole, profileData } = useAuthProvider();
 
   const profileBasicInfo = {
@@ -23,4 +23,4 @@ const UserProfilePage = () => {
   );
 };
 
-export default UserProfilePage;
+export default MemberProfilePage;

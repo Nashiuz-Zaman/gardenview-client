@@ -1,8 +1,8 @@
 // hooks
-import useAuthProvider from "../../../hooks/useAuthProvider";
+import useAuthProvider from "../../../../hooks/useAuthProvider";
 
 // components
-import ProfileBasicInfo from "../../shared/ProfileBasicInfo/ProfileBasicInfo";
+import ProfileBasicInfo from "../../../shared/ProfileBasicInfo/ProfileBasicInfo";
 
 const AdminProfilePage = () => {
   const { user, userRole } = useAuthProvider();
