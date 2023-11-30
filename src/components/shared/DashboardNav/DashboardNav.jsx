@@ -43,12 +43,12 @@ const DashboardNav = ({ role = null, closeNavFunction }) => {
           {role === "user" && (
             <>
               <li>
-                <Link className={linkClasses} to="/dashboard/user/profile">
+                <Link className={linkClasses} to="/dashboard/profile">
                   My Profile
                 </Link>
               </li>
               <li>
-                <Link className={linkClasses} to="/dashboard">
+                <Link className={linkClasses} to="/dashboard/announcements">
                   Announcements
                 </Link>
               </li>
@@ -59,7 +59,7 @@ const DashboardNav = ({ role = null, closeNavFunction }) => {
           {role === "member" && (
             <>
               <li>
-                <Link className={linkClasses} to="/dashboard/member/profile">
+                <Link className={linkClasses} to="/dashboard/profile">
                   My Profile
                 </Link>
               </li>
@@ -74,7 +74,7 @@ const DashboardNav = ({ role = null, closeNavFunction }) => {
                 </Link>
               </li>
               <li>
-                <Link className={linkClasses} to="/dashboard">
+                <Link className={linkClasses} to="/dashboard/announcements">
                   Announcements
                 </Link>
               </li>
@@ -85,7 +85,7 @@ const DashboardNav = ({ role = null, closeNavFunction }) => {
           {role === "admin" && (
             <>
               <li>
-                <Link className={linkClasses} to="/dashboard/admin/profile">
+                <Link className={linkClasses} to="/dashboard/profile">
                   Admin Profile
                 </Link>
               </li>

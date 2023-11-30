@@ -14,15 +14,13 @@ import Register from "../components/pages/Register/Register/Register";
 import Welcome from "./../components/pages/Welcome/Welcome";
 import Apartments from "../components/pages/Apartments/Apartments/Apartments";
 import Announcements from "../components/pages/Announcements/Announcements";
+import ProfilePage from "./../components/pages/ProfilePage/ProfilePage/ProfilePage";
 
 // user pages
-import UserProfilePage from "../components/pages/UserPages/UserProfilePage/UserProfilePage";
 
 // member pages
-import MemberProfilePage from "../components/pages/MemberPages/MemberProfilePage/MemberProfilePage";
 
 // admin pages
-import AdminProfilePage from "../components/pages/AdminPages/AdminProfilePage/AdminProfilePage";
 import MakeAnnouncement from "../components/pages/AdminPages/MakeAnnoucement/MakeAnnouncement";
 
 // route
@@ -56,12 +54,10 @@ const router = createBrowserRouter([
     children: [
       { path: "/dashboard", element: <Welcome /> },
       { path: "announcements", element: <Announcements /> },
+      { path: "profile", element: <ProfilePage /> },
       // user routes
-      { path: "user/profile", element: <UserProfilePage /> },
       // member routes
-      { path: "member/profile", element: <MemberProfilePage /> },
       // admin routes
-      { path: "admin/profile", element: <AdminProfilePage /> },
       {
         path: "admin/make-announcements",
         element: <MakeAnnouncement />,
