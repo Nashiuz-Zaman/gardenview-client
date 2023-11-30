@@ -12,7 +12,11 @@ import ButtonBtn from "../../../shared/ButtonBtn/ButtonBtn";
 
 const ManageMembers = () => {
   const axiosPrivate = useAxiosPrivate();
-  const { data: membersData, isLoading: membersDataLoading } = useQuery({
+  const {
+    data: membersData,
+    isLoading: membersDataLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["members"],
     queryFn: async () => {
       const res = await axiosPrivate.get("/users/members");
@@ -20,6 +24,26 @@ const ManageMembers = () => {
       return res.data;
     },
   });
+
+  const handleRemove = async (email) => {
+    console.log(email);
+
+    const updatedUser = {
+      role: "user",
+      agreementDate: "none",
+      rentedApt: {
+        floor: "none",
+        block: "none",
+        aptNo: "none",
+      },
+    };
+
+    const res = await axiosPrivate.patch(`/users/${email}`, updatedUser);
+
+    if (res.data.success) {
+      refetch();
+    }
+  };
 
   return (
     <div>
@@ -53,6 +77,9 @@ const ManageMembers = () => {
                     <td className="p-3">{member.email}</td>
                     <td>
                       <ButtonBtn
+                        onClickFunction={() => {
+                          handleRemove(member.email);
+                        }}
                         text="Remove"
                         modifyClasses="bg-red-600 !py-1 hover:bg-red-500 border-0"
                       />
