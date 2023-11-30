@@ -10,17 +10,17 @@ import useFlatsAgreementsProvider from "../../../../hooks/useFlatsAgreementsProv
 import PaginationButtons from "../../../shared/PaginationButtons/PaginationButtons";
 
 const Apartments = () => {
-  const { curPage, setCurPage, pageCount, flatsData, isLoading } =
+  const { curPage, setCurPage, pageCount, flatsData, flatsDataLoading } =
     useFlatsAgreementsProvider();
 
   return (
     <div>
       <InnerContainer>
         {/* if loading show spinner or else show flats section */}
-        {isLoading && <LoadingSpinner text="Flats Loading" />}
+        {flatsDataLoading && <LoadingSpinner text="Flats Loading" />}
 
         {/* all flats section */}
-        {!isLoading && flatsData && (
+        {!flatsDataLoading && flatsData && (
           <section className="mb-sectionGapMd lg:mb-sectionGapLg">
             <AllFlats flatsData={flatsData} modifyClasses="mb-sectionGapMd" />
 

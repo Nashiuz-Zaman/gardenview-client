@@ -37,28 +37,30 @@ const Flat = ({ flatData }) => {
       new Date().getMonth() + 1
     }-${new Date().getFullYear()}`;
 
-    // change to booked
-    const updateData = { booked: true };
-    const { data } = await axiosPrivate.patch(`/flats/${_id}`, updateData);
+    // agreement object
+    const agreementRequest = {
+      name: profileData.name,
+      email: profileData.email,
+      floorNo: floorNo,
+      blockName: blockName,
+      apartmentNo: apartmentNo,
+      rent: rent,
+      status: "pending",
+      agreementReqDate: dateStr,
+    };
+
+    // call agreement api
+    const { data } = await axiosPrivate.post("/agreements", agreementRequest);
+
+    // if agreement request successfully sent then book the apartment and remove it from the list
     if (data.success) {
-      // remove the booked flat by refetching
-      refetchFlats();
-
-      const agreementRequest = {
-        name: profileData.name,
-        email: profileData.email,
-        floorNo: floorNo,
-        blockName: blockName,
-        apartmentNo: apartmentNo,
-        rent: rent,
-        status: "pending",
-        agreementReqDate: dateStr,
-      };
-
-      const { data } = await axiosPrivate.post("/agreements", agreementRequest);
-
+      console.log("agreement request sent");
+      // change to booked
+      const updateData = { booked: true };
+      const { data } = await axiosPrivate.patch(`/flats/${_id}`, updateData);
       if (data.success) {
-        console.log("agreement request sent");
+        // remove the booked flat by refetching
+        refetchFlats();
       }
     }
   };

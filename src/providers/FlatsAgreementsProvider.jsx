@@ -20,9 +20,10 @@ const FlatsAgreementsProvider = ({ children }) => {
   const skip = (curPage - 1) * limit;
   const axiosPublic = useAxiosPublic();
 
+  // fetch flats data
   const {
     data: flatsData,
-    isLoading,
+    isLoading: flatsDataLoading,
     refetch: refetchFlats,
   } = useQuery({
     queryKey: ["flats"],
@@ -43,16 +44,35 @@ const FlatsAgreementsProvider = ({ children }) => {
     refetchFlats();
   }, [curPage, refetchFlats]);
 
-  // agreement requsts
-  // TODO
+  // agreement reqeusts
+
+  // fetch agreements data
+  const {
+    data: agreementsData,
+    agreementsDataLoading,
+    refetch: refetchAgreements,
+  } = useQuery({
+    queryKey: ["agreements"],
+    queryFn: async () => {
+      const result = await axiosPublic.get(`/agreements`);
+      if (result.data.success) {
+        return result.data.agreements;
+      }
+    },
+  });
 
   const valueObj = {
+    // flats related
     curPage,
     setCurPage,
     pageCount,
     flatsData,
-    isLoading,
+    flatsDataLoading,
     refetchFlats,
+    // agreements related
+    agreementsData,
+    agreementsDataLoading,
+    refetchAgreements,
   };
 
   return (
