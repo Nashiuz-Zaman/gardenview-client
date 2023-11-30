@@ -12,6 +12,7 @@ import router from "./router/router";
 import MediaQueryContextProvider from "./providers/MediaQueryContext";
 import AuthProvider from "./Providers/AuthProvider";
 import LoginRegistratonProvider from "./Providers/LoginRegistrationProvider";
+import FlatsAgreementsProvider from "./providers/FlatsAgreementsProvider";
 
 // tanstack import
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -27,7 +28,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <MediaQueryContextProvider>
         <AuthProvider>
           <LoginRegistratonProvider>
-            <RouterProvider router={router}></RouterProvider>
+            <FlatsAgreementsProvider>
+              <RouterProvider router={router}></RouterProvider>
+            </FlatsAgreementsProvider>
           </LoginRegistratonProvider>
         </AuthProvider>
       </MediaQueryContextProvider>

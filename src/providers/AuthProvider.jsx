@@ -53,8 +53,6 @@ const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  console.log(profileData);
-
   // set up observer for users, if there an user, update the user state and set loading to false, if there is none set user to null and set loading to false
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, async (curUser) => {

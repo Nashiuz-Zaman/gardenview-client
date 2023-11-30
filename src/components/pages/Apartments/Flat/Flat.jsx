@@ -2,8 +2,66 @@
 import PropTypes from "prop-types";
 import ButtonBtn from "../../../shared/ButtonBtn/ButtonBtn";
 
+// react router
+import { useNavigate } from "react-router-dom";
+
+// hook
+import useAuthProvider from "./../../../../hooks/useAuthProvider";
+import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
+import useFlatsAgreementsProvider from "../../../../hooks/useFlatsAgreementsProvider";
+
 const Flat = ({ flatData }) => {
-  const { imageSource, floorNo, blockName, apartmentNo, rent } = flatData;
+  // extract flat data
+  const { _id, imageSource, floorNo, blockName, apartmentNo, rent } = flatData;
+
+  const { refetchFlats } = useFlatsAgreementsProvider();
+
+  // extract user data
+  const { user, userRole, profileData } = useAuthProvider();
+
+  // axios
+  const axiosPrivate = useAxiosPrivate();
+
+  // navigate
+  const navigate = useNavigate();
+
+  const handleRequestAgreement = async (e) => {
+    e.preventDefault();
+    if (!user) {
+      navigate("/auth/login");
+      return;
+    }
+
+    // date string for agreement req date
+    const dateStr = `${new Date().getDate()}-${
+      new Date().getMonth() + 1
+    }-${new Date().getFullYear()}`;
+
+    // change to booked
+    const updateData = { booked: true };
+    const { data } = await axiosPrivate.patch(`/flats/${_id}`, updateData);
+    if (data.success) {
+      // remove the booked flat by refetching
+      refetchFlats();
+
+      const agreementRequest = {
+        name: profileData.name,
+        email: profileData.email,
+        floorNo: floorNo,
+        blockName: blockName,
+        apartmentNo: apartmentNo,
+        rent: rent,
+        status: "pending",
+        agreementReqDate: dateStr,
+      };
+
+      const { data } = await axiosPrivate.post("/agreements", agreementRequest);
+
+      if (data.success) {
+        console.log("agreement request sent");
+      }
+    }
+  };
 
   return (
     <div>
@@ -29,11 +87,13 @@ const Flat = ({ flatData }) => {
       </div>
 
       {/* agreement button */}
-      <ButtonBtn
-        text="Request Agreement"
-        onClickFunction={null}
-        modifyClasses="text-sm !rounded-default"
-      />
+      {userRole !== "admin" && (
+        <ButtonBtn
+          text="Request Agreement"
+          onClickFunction={handleRequestAgreement}
+          modifyClasses="text-sm !rounded-default"
+        />
+      )}
     </div>
   );
 };

@@ -1,48 +1,17 @@
-// react
-import { useEffect, useState } from "react";
-
 //components
 import LoadingSpinner from "../../../shared/LoadingSpinner/LoadingSpinner";
 import InnerContainer from "../../../containers/InnerContainer/InnerContainer";
 import AllFlats from "../AllFlats/AllFlats";
 
 // hooks
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import useFlatsAgreementsProvider from "../../../../hooks/useFlatsAgreementsProvider";
 
-// tanstack
-import { useQuery } from "@tanstack/react-query";
+// components
 import PaginationButtons from "../../../shared/PaginationButtons/PaginationButtons";
 
 const Apartments = () => {
-  // current page for pagination and limit
-  const [curPage, setCurPage] = useState(1);
-  const [pageCount, setPageCount] = useState(null);
-  const limit = 6;
-  const skip = (curPage - 1) * limit;
-  const axiosPublic = useAxiosPublic();
-
-  const {
-    data: flatsData,
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["flats"],
-    queryFn: async () => {
-      const result = await axiosPublic.get(
-        `/flats/?booked=false&skip=${skip}&limit=${limit}`
-      );
-      // find page count
-      if (result.data.success) {
-        setPageCount(Math.ceil(result.data.count / limit));
-      }
-      // return flats data array
-      return result.data.flats;
-    },
-  });
-
-  useEffect(() => {
-    refetch();
-  }, [curPage, refetch]);
+  const { curPage, setCurPage, pageCount, flatsData, isLoading } =
+    useFlatsAgreementsProvider();
 
   return (
     <div>
