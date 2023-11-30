@@ -6,7 +6,7 @@ const ProfileBasicInfo = ({ infoObject, modifyClasses = "" }) => {
 
   return (
     <div
-      className={`bg-lightGray rounded-2xl p-7 grid grid-cols-2 md:grid-cols-2 items-stretch ${modifyClasses}`}
+      className={`bg-lightGray rounded-2xl p-7 grid grid-cols-1 gap-10 md:gap-0 md:grid-cols-2 items-stretch justify-items-center md:justify-items-start ${modifyClasses}`}
     >
       {/* image */}
       <div className="w-[10rem] border border-lightBorder aspect-square rounded-full overflow-hidden">
@@ -18,8 +18,8 @@ const ProfileBasicInfo = ({ infoObject, modifyClasses = "" }) => {
       </div>
 
       {/* text information */}
-      <div className="border-l border-lightBorder py-3 px-7 flex items-center">
-        <div>
+      <div className="md:border-l md:border-lightBorder py-3 md:px-7 flex items-center">
+        <div className="text-center md:text-left">
           {/* heading */}
           <h2 className="font-bold capitalize mb-2 text-xl">
             Profile ({role})
