@@ -22,6 +22,7 @@ import MemberProfilePage from "../components/pages/MemberPages/MemberProfilePage
 
 // admin pages
 import AdminProfilePage from "../components/pages/AdminPages/AdminProfilePage/AdminProfilePage";
+import MakeAnnouncement from "../components/pages/AdminPages/MakeAnnoucement/MakeAnnouncement";
 
 // route
 import PrivateRoute from "./../components/routes/PrivateRoute/PrivateRoute";
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       { path: "/dashboard/member/profile", element: <MemberProfilePage /> },
       // admin routes
       { path: "/dashboard/admin/profile", element: <AdminProfilePage /> },
+      {
+        path: "/dashboard/admin/make-announcements",
+        element: <MakeAnnouncement />,
+      },
     ],
   },
 ]);

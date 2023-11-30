@@ -72,7 +72,6 @@ function DashboardLayout() {
         </div>
 
         {/* set margin according to the size of the translate and the nav */}
-
         <InnerContainer>
           <div
             className={`${

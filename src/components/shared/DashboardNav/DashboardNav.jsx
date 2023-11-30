@@ -95,7 +95,10 @@ const DashboardNav = ({ role = null, closeNavFunction }) => {
                 </Link>
               </li>
               <li>
-                <Link className={linkClasses} to="/dashboard">
+                <Link
+                  className={linkClasses}
+                  to="/dashboard/admin/make-announcements"
+                >
                   Make Announcement
                 </Link>
               </li>
