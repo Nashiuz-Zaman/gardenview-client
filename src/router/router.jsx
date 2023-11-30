@@ -13,6 +13,7 @@ import Login from "../components/pages/Login/Login/Login";
 import Register from "../components/pages/Register/Register/Register";
 import Welcome from "./../components/pages/Welcome/Welcome";
 import Apartments from "../components/pages/Apartments/Apartments/Apartments";
+import Announcements from "../components/pages/Announcements/Announcements";
 
 // user pages
 import UserProfilePage from "../components/pages/UserPages/UserProfilePage/UserProfilePage";
@@ -47,7 +48,6 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-
     element: (
       <PrivateRoute>
         <DashboardLayout />
@@ -55,14 +55,15 @@ const router = createBrowserRouter([
     ),
     children: [
       { path: "/dashboard", element: <Welcome /> },
+      { path: "announcements", element: <Announcements /> },
       // user routes
-      { path: "/dashboard/user/profile", element: <UserProfilePage /> },
+      { path: "user/profile", element: <UserProfilePage /> },
       // member routes
-      { path: "/dashboard/member/profile", element: <MemberProfilePage /> },
+      { path: "member/profile", element: <MemberProfilePage /> },
       // admin routes
-      { path: "/dashboard/admin/profile", element: <AdminProfilePage /> },
+      { path: "admin/profile", element: <AdminProfilePage /> },
       {
-        path: "/dashboard/admin/make-announcements",
+        path: "admin/make-announcements",
         element: <MakeAnnouncement />,
       },
     ],
