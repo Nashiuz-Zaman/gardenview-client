@@ -17,6 +17,10 @@ const PaginationButtons = ({ pageCount, curPage, setCurPage }) => {
     }
   }, [pageCount, setButtons]);
 
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className="flex items-center gap-2 justify-center">
       {curPage > 1 && (
@@ -25,6 +29,7 @@ const PaginationButtons = ({ pageCount, curPage, setCurPage }) => {
           className="text-lg w-max rounded-full flex justify-center items-center hover:text-primary transition-all duration-150 mr-3"
           onClick={() => {
             setCurPage((prev) => prev - 1);
+            scrollToTop();
           }}
         >
           Prev
@@ -43,6 +48,7 @@ const PaginationButtons = ({ pageCount, curPage, setCurPage }) => {
               key={button.value}
               onClick={() => {
                 setCurPage(button.value);
+                scrollToTop();
               }}
             >
               {button.value}
@@ -56,6 +62,7 @@ const PaginationButtons = ({ pageCount, curPage, setCurPage }) => {
           className="text-lg w-max rounded-full flex justify-center items-center hover:text-primary transition-all duration-150 ml-3"
           onClick={() => {
             setCurPage((prev) => prev + 1);
+            scrollToTop();
           }}
         >
           Next
