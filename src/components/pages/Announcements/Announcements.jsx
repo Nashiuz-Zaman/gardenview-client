@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import DashboardHeading from "../../shared/DashboardHeading/DashboardHeading";
 import SingleAnnouncement from "./SingleAnnouncement/SingleAnnouncement";
 import LoadingSpinner from "../../shared/LoadingSpinner/LoadingSpinner";
+import NoData from "../../shared/NoData/NoData";
 
 // hooks
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
@@ -30,7 +31,9 @@ const Announcements = () => {
 
         {isLoading && <LoadingSpinner />}
 
-        {!isLoading && announcementsData && (
+        {!isLoading && announcementsData.length < 1 && <NoData />}
+
+        {!isLoading && announcementsData.lenth > 0 && (
           <div className="space-y-4">
             {announcementsData.map((announcement) => {
               return (

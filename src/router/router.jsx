@@ -22,10 +22,11 @@ import ProfilePage from "./../components/pages/ProfilePage/ProfilePage/ProfilePa
 
 // admin pages
 import MakeAnnouncement from "../components/pages/AdminPages/MakeAnnoucement/MakeAnnouncement";
+import AgreementRequests from "../components/pages/AdminPages/AgreementRequests/AgreementRequests";
+import ManageMembers from "../components/pages/AdminPages/ManageMembers/ManageMembers";
 
 // route
 import PrivateRoute from "./../components/routes/PrivateRoute/PrivateRoute";
-import AgreementRequests from "../components/pages/AdminPages/AgreementRequests/AgreementRequests";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: "admin/agreement-requests",
         element: <AgreementRequests />,
+      },
+      {
+        path: "admin/manage-members",
+        element: <ManageMembers />,
       },
     ],
   },
