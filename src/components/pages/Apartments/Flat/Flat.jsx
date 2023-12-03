@@ -90,10 +90,11 @@ const Flat = ({ flatData }) => {
         </p>
       </div>
 
+      {/* admins cannot view the book apartment button */}
       {/* agreement button */}
-      {profileData && profileData.role !== "admin" && (
+      {(!profileData || profileData.role !== "admin") && (
         <ButtonBtn
-          text="Request Agreement"
+          text="Book Apartment"
           onClickFunction={handleRequestAgreement}
           modifyClasses="text-sm !rounded-default"
         />
