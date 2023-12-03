@@ -13,7 +13,7 @@ import useAuthProvider from "../../../hooks/useAuthProvider";
 
 const PrivateRoute = ({ children }) => {
   // extract the user state from context
-  const { userExistInApp, appLoading } = useAuthProvider();
+  const { profileData, appLoading } = useAuthProvider();
 
   // find out which route the user was originally going to
   const { pathname } = useLocation();
@@ -24,7 +24,7 @@ const PrivateRoute = ({ children }) => {
 
   if (!appLoading) {
     // if user is present then give permission to go to selected page
-    if (userExistInApp) {
+    if (profileData) {
       return children;
     }
     return <Navigate state={pathname} to="/auth/login"></Navigate>;

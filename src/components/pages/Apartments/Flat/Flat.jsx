@@ -17,7 +17,7 @@ const Flat = ({ flatData }) => {
   const { refetchFlats, refetchAgreements } = useFlatsAgreementsProvider();
 
   // extract user data
-  const { user, userRole, profileData } = useAuthProvider();
+  const { user, profileData } = useAuthProvider();
 
   // axios
   const axiosPrivate = useAxiosPrivate();
@@ -91,7 +91,7 @@ const Flat = ({ flatData }) => {
       </div>
 
       {/* agreement button */}
-      {userRole !== "admin" && (
+      {profileData && profileData.role !== "admin" && (
         <ButtonBtn
           text="Request Agreement"
           onClickFunction={handleRequestAgreement}

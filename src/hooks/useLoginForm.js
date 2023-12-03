@@ -13,7 +13,7 @@ const useLoginForm = () => {
     login,
     setAppLoading,
     loginGoogle,
-    setUserExistInApp,
+    setUserShouldExist,
     setProfileData,
   } = useAuthProvider();
 
@@ -48,25 +48,24 @@ const useLoginForm = () => {
 
     // if google login is succesful send the google user object to the database to check role and existence and also to make a jwt token
     if (result.user) {
-      // user exist in app, I meant user should exist in app
-      setUserExistInApp(true);
-
       const googleUser = {
         name: result.user.displayName,
         email: result.user.email,
       };
 
+      // check with database if the google user already exists
       const googleLoginResponse = await axiosPublic.post(
         "/google-login",
         googleUser
       );
 
-      // if user already exists in mongodb this will return just the role or else the whole newly created user object from mongodb
       if (googleLoginResponse.data.success) {
+        // set profile data, user should exist and the jwt token
         setProfileData(googleLoginResponse.data.user);
-        // if google login was successful set the jwt token
+        setUserShouldExist(true);
         localStorage.setItem("token", googleLoginResponse.data.token);
 
+        // send them where they were previously going
         if (state) {
           navigate(state);
           setAppLoading(false);
@@ -86,27 +85,29 @@ const useLoginForm = () => {
     });
 
     try {
+      // firebase login api call
       const result = await login(loginInfo.email, loginInfo.password);
 
-      //  if firebase login is successful, check database for user role
+      //  if firebase login is successful, check database for profile data
       if (result.user) {
-        setUserExistInApp(true);
         const loginResponse = await axiosPublic.post("/login", {
           email: result.user.email,
         });
 
-        // set users role to a central role first when they login in the app anytime! BELOW
+        if (loginResponse.data.success) {
+          setProfileData(loginResponse.data.user);
+          setUserShouldExist(true);
+          // set profile and the jwt token in the localstorage
+          localStorage.setItem("token", loginResponse.data.token);
 
-        // set user's role and the jwt token in the localstorage
-        // setUserRole(loginResponse.data.role);
+          // send them where they were previously going
+          if (state) {
+            navigate(state);
+          } else {
+            navigate("/");
+          }
 
-        localStorage.setItem("token", loginResponse.data.token);
-
-        // send them wherever they were going
-        if (state) {
-          navigate(state);
-        } else {
-          navigate("/");
+          setAppLoading(false);
         }
       }
     } catch (error) {

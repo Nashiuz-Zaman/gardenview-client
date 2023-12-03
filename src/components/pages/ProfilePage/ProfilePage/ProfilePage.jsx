@@ -6,13 +6,13 @@ import RentalStats from "../RentalStats/RentalStats";
 import ProfileBasicInfo from "../ProfileBasicInfo/ProfileBasicInfo";
 
 const ProfilePage = () => {
-  const { user, userRole, profileData } = useAuthProvider();
+  const { user, profileData } = useAuthProvider();
 
   const profileBasicInfo = {
     name: user.displayName,
     imageSource: user.photoURL,
     email: user.email,
-    role: userRole,
+    role: profileData.role,
   };
 
   if (profileData) {
@@ -20,7 +20,7 @@ const ProfilePage = () => {
       <div>
         <ProfileBasicInfo infoObject={profileBasicInfo} modifyClasses="mb-10" />
 
-        {userRole && userRole !== "admin" && (
+        {profileData.role !== "admin" && (
           <RentalStats rentalInfo={profileData} />
         )}
       </div>
