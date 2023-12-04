@@ -51,6 +51,7 @@ const useLoginForm = () => {
       const googleUser = {
         name: result.user.displayName,
         email: result.user.email,
+        image: result.user.photoURL,
       };
 
       // check with database if the google user already exists
@@ -68,11 +69,10 @@ const useLoginForm = () => {
         // send them where they were previously going
         if (state) {
           navigate(state);
-          setAppLoading(false);
         } else {
           navigate("/");
-          setAppLoading(false);
         }
+        setAppLoading(false);
       }
     }
   };
@@ -106,7 +106,6 @@ const useLoginForm = () => {
           } else {
             navigate("/");
           }
-
           setAppLoading(false);
         }
       }

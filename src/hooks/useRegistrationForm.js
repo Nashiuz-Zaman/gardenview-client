@@ -16,9 +16,9 @@ const useRegistrationForm = () => {
   const {
     signup,
     updateUserProfile,
-    setUserExists,
+    setUserAlreadyRegistered,
     setAppLoading,
-    setUserExistInApp,
+    setUserShouldExist,
     setProfileData,
   } = useAuthProvider();
 
@@ -105,9 +105,8 @@ const useRegistrationForm = () => {
 
         // if user exists
         if (userExistsResponse.data.userExists) {
+          setUserAlreadyRegistered(true);
           setAppLoading(false);
-          setUserExists(true);
-          return;
         } else {
           // if user doesn't exist
           // upload image to imgbb first
@@ -129,26 +128,20 @@ const useRegistrationForm = () => {
               registrationInfo.password
             );
 
-            // if firebase sign up successful update the profile first
             if (signupResponse.user) {
-              setUserExistInApp(true);
-              // after sign up update the profile
+              // if firebase sign up successful update the profile first
               await updateUserProfile(
                 registrationInfo.username,
                 imageUploadResponse.data.data.display_url
               );
 
-              // user object to send to the database to save
+              // save new user object to database
               const user = {
                 name: registrationInfo.username,
                 email: registrationInfo.email,
+                imageSource: imageUploadResponse.data.data.display_url,
                 role: "user",
-                agreementDate: "none",
-                rentedApt: {
-                  floor: "none",
-                  block: "none",
-                  aptNo: "none",
-                },
+                rentedApartments: [],
               };
 
               // create user api call
@@ -157,11 +150,13 @@ const useRegistrationForm = () => {
                 user
               );
 
+              // if success
               if (userCreationResponse.data.success) {
                 setProfileData(userCreationResponse.data.user);
+                setUserShouldExist(true);
                 localStorage.setItem("token", userCreationResponse.data.token);
-
                 navigate("/");
+                setAppLoading(false);
               }
             }
           }
