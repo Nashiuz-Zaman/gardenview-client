@@ -1,3 +1,9 @@
+// react
+import { useState } from "react";
+
+// react icons
+import { IoEye, IoEyeOff } from "react-icons/io5";
+
 // react router import
 import { Link } from "react-router-dom";
 
@@ -11,6 +17,7 @@ import useLoginForm from "../../../../hooks/useLoginForm";
 const LoginForm = () => {
   const { loginInfo, getEmail, getPassword, handleLogin, handleLoginGoogle } =
     useLoginForm();
+  const [showPassword, setShowPassword] = useState(false);
 
   // common styles for input and label jsx elements
   const inputClasses =
@@ -33,16 +40,33 @@ const LoginForm = () => {
         </div>
 
         {/* password field */}
-        <div className="">
+        <div className="relative">
           <input
             className={inputClasses}
-            onChange={getPassword}
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
+            name="password"
+            onChange={getPassword}
             value={loginInfo.password}
-            placeholder="Your password"
-            required
+            placeholder="password"
           />
+
+          {/* show/no show password buttons */}
+          <button
+            aria-label="Show or not show password button"
+            type="button"
+            className="block w-max absolute top-1/2 -translate-y-1/2 right-3 text-textPrimary"
+            onClick={(e) => {
+              e.preventDefault();
+              setShowPassword((prev) => !prev);
+            }}
+          >
+            {showPassword ? (
+              <IoEyeOff className="text-xl" />
+            ) : (
+              <IoEye className="text-xl" />
+            )}
+          </button>
         </div>
 
         {/* show login errors here */}
