@@ -86,6 +86,7 @@ const useRegistrationForm = () => {
   // function to run when the form is submitted
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // reset errors
     setRegistrationInfo((prev) => {
       return { ...prev, errors: [] };
     });
@@ -106,7 +107,7 @@ const useRegistrationForm = () => {
 
     const foundErrors = validateInputs(dataObject);
 
-    // if there are no erros user can register
+    // if there are erros return from here
     if (foundErrors.length > 0) {
       setRegistrationInfo((prev) => {
         return { ...prev, errors: foundErrors };

@@ -22,13 +22,8 @@ const Register = () => {
   useEffect(() => {
     return () => {
       setRegistrationInfo({
-        email: "",
-        password: "",
-        username: "",
-        photoFile: "",
         showSuccessToast: false,
         errors: [],
-        generalError: null,
       });
     };
   }, [setRegistrationInfo]);

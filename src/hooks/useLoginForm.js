@@ -23,8 +23,7 @@ const useLoginForm = () => {
   // extract different login and registration related states from this hook
   const { loginInfo, setLoginInfo } = useLoginRegistrationProvider();
 
-  // // take the create cookie function from the hook
-  // const { createCookie } = useControlCookie();
+  console.log(loginInfo);
 
   // create the navigation function
   const navigate = useNavigate();
@@ -32,14 +31,23 @@ const useLoginForm = () => {
   // extract state value from use location hook
   const { state } = useLocation();
 
-  // on change run this function for email field
-  const getEmail = (e) => {
-    setLoginInfo({ ...loginInfo, email: e.target.value });
-  };
+  const validateInputs = (inputs) => {
+    const { email, password } = inputs;
+    const emailRegex = /[a-z0-9._]+@[a-z0-9]+.[a-z]+/g;
 
-  // on change run this function for password field
-  const getPassword = (e) => {
-    setLoginInfo({ ...loginInfo, password: e.target.value });
+    const foundErrors = [];
+
+    if (email === "") {
+      foundErrors.push("Must provide an email address");
+    } else if (!emailRegex.test(email)) {
+      foundErrors.push("Must provide a valid email address");
+    }
+
+    if (password === "") {
+      foundErrors.push("Must provide a password");
+    }
+
+    return foundErrors;
   };
 
   // handle google sign in
@@ -80,13 +88,35 @@ const useLoginForm = () => {
   // handle normal login
   const handleLogin = async (e) => {
     e.preventDefault();
+    // reset errors
     setLoginInfo((prev) => {
-      return { ...prev, loginError: "" };
+      return { ...prev, errors: [] };
     });
+
+    const form = e.target;
+
+    const email = form.email.value;
+    const password = form.password.value;
+
+    const dataObject = {
+      email,
+      password,
+    };
+
+    const foundErrors = validateInputs(dataObject);
+
+    // if there are erros return from here
+    if (foundErrors.length > 0) {
+      setLoginInfo((prev) => {
+        return { ...prev, errors: foundErrors };
+      });
+
+      return;
+    }
 
     try {
       // firebase login api call
-      const result = await login(loginInfo.email, loginInfo.password);
+      const result = await login(dataObject.email, dataObject.password);
 
       //  if firebase login is successful, check database for profile data
       if (result.user) {
@@ -113,7 +143,7 @@ const useLoginForm = () => {
       setLoginInfo((prev) => {
         return {
           ...prev,
-          error: "Email/Password doesn't match. Try again.",
+          errors: ["Email/Password doesn't match. Try again."],
         };
       });
       setAppLoading(false);
@@ -123,8 +153,6 @@ const useLoginForm = () => {
   return {
     loginInfo,
     setLoginInfo,
-    getEmail,
-    getPassword,
     handleLogin,
     handleLoginGoogle,
   };

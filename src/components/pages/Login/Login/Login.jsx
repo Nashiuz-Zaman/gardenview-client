@@ -17,10 +17,8 @@ const Login = () => {
   useEffect(() => {
     return () => {
       setLoginInfo({
-        email: "",
-        password: "",
         showSuccessToast: false,
-        error: "",
+        errors: [],
       });
     };
   }, [setLoginInfo]);

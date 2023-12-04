@@ -14,10 +14,8 @@ const LoginRegistratonProvider = ({ children }) => {
 
   // login STATES
   const [loginInfo, setLoginInfo] = useState({
-    email: "",
-    password: "",
     showSuccessToast: false,
-    error: "",
+    errors: [],
   });
 
   const valueObj = {

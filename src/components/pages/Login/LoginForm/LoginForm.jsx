@@ -15,9 +15,10 @@ import GoogleLoginBtn from "../../../shared/GoogleLoginBtn/GoogleLoginBtn";
 import useLoginForm from "../../../../hooks/useLoginForm";
 
 const LoginForm = () => {
-  const { loginInfo, getEmail, getPassword, handleLogin, handleLoginGoogle } =
-    useLoginForm();
+  const { loginInfo, handleLogin, handleLoginGoogle } = useLoginForm();
   const [showPassword, setShowPassword] = useState(false);
+
+  console.log(loginInfo);
 
   // common styles for input and label jsx elements
   const inputClasses =
@@ -25,17 +26,19 @@ const LoginForm = () => {
 
   return (
     <div>
-      <form onSubmit={handleLogin} className="w-full md:w-[20rem] mx-auto p-4">
+      <form
+        noValidate
+        onSubmit={handleLogin}
+        className="w-full md:w-[20rem] mx-auto p-4"
+      >
         {/* email field */}
         <div className="mb-4">
           <input
             className={inputClasses}
-            onChange={getEmail}
             type="email"
             id="email"
-            value={loginInfo.email}
-            placeholder="Your email"
-            required
+            name="email"
+            placeholder="Email"
           />
         </div>
 
@@ -46,9 +49,7 @@ const LoginForm = () => {
             type={showPassword ? "text" : "password"}
             id="password"
             name="password"
-            onChange={getPassword}
-            value={loginInfo.password}
-            placeholder="password"
+            placeholder="Password"
           />
 
           {/* show/no show password buttons */}
@@ -69,11 +70,35 @@ const LoginForm = () => {
           </button>
         </div>
 
-        {/* show login errors here */}
-        {loginInfo.error && (
-          <p className="mt-4 text-red-600 font-medium text-center">
-            {loginInfo.error}
-          </p>
+        {/* show errors here */}
+        {/* {loginInfo.errors.length > 0 && (
+          <div className="space-y-4 mt-4">
+            {loginInfo.errors.map((error) => {
+              return (
+                <p
+                  key={error}
+                  className="text-sm text-center font-semibold text-red-600"
+                >
+                  * {error}
+                </p>
+              );
+            })}
+          </div>
+        )} */}
+
+        {loginInfo.errors.length > 0 && (
+          <div className="space-y-4 mt-4">
+            {loginInfo.errors.map((error) => {
+              return (
+                <p
+                  key={error}
+                  className="text-sm text-center font-semibold text-red-600"
+                >
+                  * {error}
+                </p>
+              );
+            })}
+          </div>
         )}
 
         <ButtonBtn text="Log In" modifyClasses="w-full block mt-10 mb-4" />
