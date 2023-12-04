@@ -7,9 +7,9 @@ const FileUploadBtn = ({ children = null, onChange, modifyClasses = "" }) => {
 
   return (
     <div
-      className={`rounded-defaultLg bg-primary hover:bg-primaryLight transition-all duration-200 text-white px-4 py-2 pointer ${modifyClasses}`}
+      className={`rounded-defaultLg bg-primary hover:bg-primaryLight transition-all duration-200 text-white px-4 py-2 pointer cursor-pointer ${modifyClasses}`}
     >
-      <label>
+      <label className="cursor-pointer">
         <span className="flex w-full items-center justify-center gap-2">
           {!selected && !children && "Upload File"}
           {!selected && children && children}
