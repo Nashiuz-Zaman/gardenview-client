@@ -32,6 +32,10 @@ const AuthProvider = ({ children }) => {
   // should user exist
   const [userShouldExist, setUserShouldExist] = useState(false);
 
+  // does user exist on database at the time of registration?
+  // check this state
+  const [userAlreadyRegistered, setUserAlreadyRegistered] = useState(false);
+
   //  user/members/admin  profile information
   const [profileData, setProfileData] = useState(null);
 
@@ -57,7 +61,7 @@ const AuthProvider = ({ children }) => {
       if (curUser) {
         setUser(curUser);
 
-        // if profile data not found execute the below code
+        // this code should only run when the website is refreshed
         if (!profileData && userShouldExist) {
           // check which firebase user is logged in, send the email to database and bring their profile data
           const userCheckResponse = await axiosPublic.post("/login", {
@@ -65,8 +69,6 @@ const AuthProvider = ({ children }) => {
           });
 
           setProfileData(userCheckResponse.data.user);
-          setAppLoading(false);
-        } else {
           setAppLoading(false);
         }
       } else {
@@ -80,10 +82,6 @@ const AuthProvider = ({ children }) => {
       unSubscribe();
     };
   }, [axiosPublic, userShouldExist, profileData]);
-
-  // does user exist on database at the time of registration?
-  // check this state
-  const [userExists, setUserExists] = useState(false);
 
   // login with google function
   const loginGoogle = () => {
@@ -137,9 +135,8 @@ const AuthProvider = ({ children }) => {
     login,
     updateUserProfile,
     loginGoogle,
-    userExists,
-    setUserExists,
-
+    userAlreadyRegistered,
+    setUserAlreadyRegistered,
     profileData,
     setProfileData,
     userShouldExist,
