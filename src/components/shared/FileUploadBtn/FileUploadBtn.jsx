@@ -2,7 +2,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const FileUploadBtn = ({ children = null, onChange, modifyClasses = "" }) => {
+const FileUploadBtn = ({ children = null, modifyClasses = "" }) => {
   const [selected, setSelected] = useState(false);
 
   return (
@@ -16,13 +16,12 @@ const FileUploadBtn = ({ children = null, onChange, modifyClasses = "" }) => {
           {selected && "Selected"}
         </span>
         <input
-          onChange={(e) => {
+          onChange={() => {
             setSelected(true);
-            onChange(e);
           }}
           className="hidden"
           type="file"
-          name="fileUpload"
+          name="file"
         />
       </label>
     </div>
@@ -31,7 +30,6 @@ const FileUploadBtn = ({ children = null, onChange, modifyClasses = "" }) => {
 
 FileUploadBtn.propTypes = {
   children: PropTypes.any,
-  onChange: PropTypes.func,
   modifyClasses: PropTypes.string,
 };
 

@@ -6,18 +6,10 @@ import { createContext, useState } from "react";
 export const LoginRegistrationContext = createContext();
 
 const LoginRegistratonProvider = ({ children }) => {
-  // set to true when the submit button has been clicked to show errors only when the submission has happened
-  const [formSubmitted, setFormSubmitted] = useState(false);
-
   // registration states
   const [registrationInfo, setRegistrationInfo] = useState({
-    email: "",
-    password: "",
-    username: "",
-    photoFile: "",
     showSuccessToast: false,
     errors: [],
-    generalError: null,
   });
 
   // login STATES
@@ -30,9 +22,7 @@ const LoginRegistratonProvider = ({ children }) => {
 
   const valueObj = {
     registrationInfo,
-    setFormSubmitted,
     setRegistrationInfo,
-    formSubmitted,
     loginInfo,
     setLoginInfo,
   };

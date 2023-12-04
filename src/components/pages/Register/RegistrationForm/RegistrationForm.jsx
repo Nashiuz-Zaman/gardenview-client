@@ -1,5 +1,9 @@
+// react
+import { useState } from "react";
+
 // react icons
 import { IoCloudUpload } from "react-icons/io5";
+import { IoEye, IoEyeOff } from "react-icons/io5";
 
 // react router import
 import { Link } from "react-router-dom";
@@ -14,15 +18,8 @@ import GoogleLoginBtn from "../../../shared/GoogleLoginBtn/GoogleLoginBtn";
 import FileUploadBtn from "../../../shared/FileUploadBtn/FileUploadBtn";
 
 const RegistrationForm = () => {
-  const {
-    registrationInfo,
-    getUsername,
-    getEmail,
-    getPassword,
-    getPhotoFile,
-    handleSubmit,
-    formSubmitted,
-  } = useRegistrationForm();
+  const { registrationInfo, handleSubmit } = useRegistrationForm();
+  const [showPassword, setShowPassword] = useState(false);
 
   // take the google login function from login hook
   const { handleLoginGoogle } = useLoginForm();
@@ -33,17 +30,19 @@ const RegistrationForm = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="w-full md:w-[20rem] mx-auto p-4">
+      <form
+        noValidate
+        onSubmit={handleSubmit}
+        className="w-full md:w-[20rem] mx-auto p-4"
+      >
         {/* username field */}
         <div className="mb-4">
           <input
             className={inputClasses}
-            onChange={getUsername}
+            name="name"
             type="text"
             id="username"
-            value={registrationInfo.username}
             placeholder="username"
-            required
           />
         </div>
 
@@ -51,7 +50,7 @@ const RegistrationForm = () => {
         <div className="mb-4 grid grid-cols-2 items-center">
           <p>Your Photo</p>
 
-          <FileUploadBtn onChange={getPhotoFile}>
+          <FileUploadBtn>
             Browse <IoCloudUpload className="text-xl" />
           </FileUploadBtn>
         </div>
@@ -60,46 +59,54 @@ const RegistrationForm = () => {
         <div className="mb-4">
           <input
             className={inputClasses}
-            onChange={getEmail}
             type="email"
             id="email"
-            value={registrationInfo.email}
+            name="email"
             placeholder="email"
-            required
           />
         </div>
 
         {/* password field */}
-        <div>
+        <div className="relative">
           <input
             className={inputClasses}
-            onChange={getPassword}
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
-            value={registrationInfo.password}
+            name="password"
             placeholder="password"
-            required
           />
+
+          {/* show/no show password buttons */}
+          <button
+            aria-label="Show or not show password button"
+            type="button"
+            className="block w-max absolute top-1/2 -translate-y-1/2 right-3 text-textPrimary"
+            onClick={(e) => {
+              e.preventDefault();
+              setShowPassword((prev) => !prev);
+            }}
+          >
+            {showPassword ? (
+              <IoEyeOff className="text-xl" />
+            ) : (
+              <IoEye className="text-xl" />
+            )}
+          </button>
         </div>
 
         {/* show errors here */}
-        {registrationInfo.errors.length > 0 && formSubmitted && (
+        {registrationInfo.errors.length > 0 && (
           <div className="space-y-4 mt-4">
             {registrationInfo.errors.map((error) => {
               return (
-                <p key={error} className="text-sm font-semibold text-red-600">
-                  *{error}
+                <p
+                  key={error}
+                  className="text-sm text-center font-semibold text-red-600"
+                >
+                  * {error}
                 </p>
               );
             })}
-          </div>
-        )}
-
-        {registrationInfo.generalError !== null && (
-          <div className="mt-4">
-            <p className="text-sm text-center font-semibold text-red-600">
-              *{registrationInfo.generalError}
-            </p>
           </div>
         )}
 
