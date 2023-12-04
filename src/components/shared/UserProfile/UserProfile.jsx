@@ -27,7 +27,7 @@ const UserProfile = ({ profile, logoutFunction }) => {
 
   if (profile) {
     // assign name and photo variables
-    name = profile.displayName;
+    name = profile.name;
     image = profile.imageSource;
 
     return (
