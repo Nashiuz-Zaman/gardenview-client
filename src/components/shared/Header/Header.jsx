@@ -18,7 +18,7 @@ import { navOptions } from "./../../../nativeData/navigationOptions";
 
 const Header = () => {
   // extra user from auth
-  const { user, appLoading, logout } = useAuthProvider();
+  const { profileData, appLoading, logout } = useAuthProvider();
 
   // check screen size
   const { computerScreenMatches } = useMediaQueryContext();
@@ -48,7 +48,7 @@ const Header = () => {
 
             {/* if app is finished loading and there is NO user */}
             {/* show the login button */}
-            {!appLoading && !user && (
+            {!appLoading && !profileData && (
               <div className="block justify-self-end">
                 <LinkBtn text="Login" url="/auth/login" />
               </div>
@@ -56,8 +56,8 @@ const Header = () => {
 
             {/* if app is finished loading and there is YES user */}
             {/* show the userprofile */}
-            {!appLoading && user && (
-              <UserProfile authUser={user} logoutFunction={logout} />
+            {!appLoading && profileData && (
+              <UserProfile profile={profileData} logoutFunction={logout} />
             )}
 
             {/* for small sizes like tablet and mobile show this part */}

@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 //  react icon import
 import { FaUserCircle } from "react-icons/fa";
 
-const UserProfile = ({ authUser, logoutFunction }) => {
+const UserProfile = ({ profile, logoutFunction }) => {
   // hover state
   const [showInfoPanel, setShowInfoPanel] = useState(false);
 
@@ -23,12 +23,12 @@ const UserProfile = ({ authUser, logoutFunction }) => {
   };
 
   // declare name and photo variables
-  let name, photoURL;
+  let name, image;
 
-  if (authUser) {
+  if (profile) {
     // assign name and photo variables
-    name = authUser.displayName;
-    photoURL = authUser.photoURL;
+    name = profile.displayName;
+    image = profile.imageSource;
 
     return (
       <div className="w-[2.5rem] cursor-pointer relative">
@@ -38,15 +38,15 @@ const UserProfile = ({ authUser, logoutFunction }) => {
           className="w-full h-full aspect-square border border-[#ddd]  rounded-full overflow-hidden"
         >
           {/* if no photo provided show default silhoutte photo */}
-          {!photoURL && (
+          {!image && (
             <FaUserCircle className="w-full h-full object-contain text-white"></FaUserCircle>
           )}
 
           {/* if there is photo show this part */}
-          {photoURL !== null && (
+          {image !== null && (
             <img
               className="w-full h-full object-cover"
-              src={photoURL}
+              src={image}
               alt="user image"
             />
           )}
@@ -77,7 +77,7 @@ const UserProfile = ({ authUser, logoutFunction }) => {
 };
 
 UserProfile.propTypes = {
-  authUser: PropTypes.object,
+  profile: PropTypes.object,
   logoutFunction: PropTypes.func,
   justImage: PropTypes.bool,
 };
