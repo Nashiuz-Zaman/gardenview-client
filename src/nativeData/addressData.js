@@ -1,11 +1,11 @@
 export const addressData = {
   addressDetails: [
-    "123 Tranquil Avenue",
+    "456 Seaside Boulevard",
     "GardenView Heights,",
-    "Gulshan, Dhaka 1212,",
-    "Bangladesh.",
+    "Miami Beach, FL 33139,",
+    "United States",
   ],
-  phone: "+880 1970 301 602",
+  phone: "(555) 123-4567",
   email: "inquiries@gardenviewheights.com",
 };
 

@@ -1,7 +1,7 @@
 export const homeTopBannerTextContent = {
   heading: <>Welcome to GardenView Homes</>,
   subheading: (
-    <>Discover the Comfort and Elegance of Apartment Living in Gulshan</>
+    <>Discover the Comfort and Elegance of Apartment Living in Florida</>
   ),
 };
 
@@ -60,7 +60,7 @@ export const aboutContent = {
   descriptions: [
     {
       id: 0,
-      text: "Nestled in the heart of Gulshan, GardenView Homes stands as a beacon of luxury and tranquility. A masterpiece of modern architecture, the building boasts sleek lines and elegant design, complemented by lush greenery that envelops the surroundings. As you step into GardenView Homes, you're greeted by a grand lobby adorned with artful details, setting the tone for the opulence that awaits within.",
+      text: "Nestled in the heart of Miami Beach, GardenView Homes stands as a beacon of luxury and tranquility. A masterpiece of modern architecture, the building boasts sleek lines and elegant design, complemented by lush greenery that envelops the surroundings. As you step into GardenView Homes, you're greeted by a grand lobby adorned with artful details, setting the tone for the opulence that awaits within.",
     },
     {
       id: 1,
@@ -72,5 +72,5 @@ export const aboutContent = {
 export const directionsContent = {
   heading: <>Visit us</>,
   directions:
-    "Nestled at the intersection of Blossom Lane and Tranquil Avenue in the heart of Gulshan, GardenView Apartments stand tall, a beacon of luxury. Follow the charming tree-lined Blossom Lane until you reach the exquisite entrance, where the scent of blooming flowers welcomes you. Turn onto Tranquil Avenue, and there it is — a modern oasis amidst the bustling cityscape. Easily accessible yet tucked away, GardenView Apartments redefine urban living at the crossroads of elegance and convenience",
+    "Navigate the sunlit Seaside Boulevard until you arrive at the grand entrance, where the refreshing sea breeze and the fragrance of saltwater greet you. A modern haven awaits on Seaside Boulevard, offering a blend of coastal elegance and city convenience. Experience the allure of GardenView Apartments, seamlessly nestled in the vibrant heart of Miami Beach.",
 };
