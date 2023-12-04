@@ -43,10 +43,7 @@ const Features = ({ shouldAnimate = false }) => {
               <Description text={description} />
 
               {/* list of features */}
-              <ListOfTextUnordered
-                textArray={features}
-                modifyClasses="!leading-[1.5]"
-              />
+              <ListOfTextUnordered textArray={features} />
             </div>
           </div>
 

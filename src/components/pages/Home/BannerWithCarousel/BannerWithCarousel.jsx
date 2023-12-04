@@ -55,7 +55,11 @@ const BannerWithCarousel = () => {
           {/*  buttons */}
           <div className="flex flex-col xsm:flex-row items-center gap-3 justify-center lg:justify-start">
             <LinkBtn text="Learn More" hashed={true} url={"/#features"} />
-            <LinkBtn text="Browse Apartments" outlined={true} />
+            <LinkBtn
+              text="Browse Apartments"
+              outlined={true}
+              url="/apartments"
+            />
           </div>
         </div>
       </div>
