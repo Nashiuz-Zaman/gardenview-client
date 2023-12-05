@@ -70,22 +70,6 @@ const LoginForm = () => {
           </button>
         </div>
 
-        {/* show errors here */}
-        {/* {loginInfo.errors.length > 0 && (
-          <div className="space-y-4 mt-4">
-            {loginInfo.errors.map((error) => {
-              return (
-                <p
-                  key={error}
-                  className="text-sm text-center font-semibold text-red-600"
-                >
-                  * {error}
-                </p>
-              );
-            })}
-          </div>
-        )} */}
-
         {loginInfo.errors.length > 0 && (
           <div className="space-y-1 mt-4">
             {loginInfo.errors.map((error) => {
