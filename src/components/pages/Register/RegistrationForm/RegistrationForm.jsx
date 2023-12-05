@@ -96,7 +96,7 @@ const RegistrationForm = () => {
 
         {/* show errors here */}
         {registrationInfo.errors.length > 0 && (
-          <div className="space-y-4 mt-4">
+          <div className="space-y-1 mt-4">
             {registrationInfo.errors.map((error) => {
               return (
                 <p

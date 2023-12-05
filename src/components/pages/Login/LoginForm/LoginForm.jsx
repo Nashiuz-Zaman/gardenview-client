@@ -87,7 +87,7 @@ const LoginForm = () => {
         )} */}
 
         {loginInfo.errors.length > 0 && (
-          <div className="space-y-4 mt-4">
+          <div className="space-y-1 mt-4">
             {loginInfo.errors.map((error) => {
               return (
                 <p
