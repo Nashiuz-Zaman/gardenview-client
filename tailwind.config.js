@@ -18,7 +18,7 @@ export default {
         elementGapMd: "3rem",
       },
       boxShadow: {
-        large: "0 10px 40px -5px rgba(0,0,0,0.3)",
+        large: "0 10px 60px -5px rgba(0,0,0,0.3)",
       },
       colors: {
         primary: "#228B22",

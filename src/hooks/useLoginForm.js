@@ -23,8 +23,6 @@ const useLoginForm = () => {
   // extract different login and registration related states from this hook
   const { loginInfo, setLoginInfo } = useLoginRegistrationProvider();
 
-  console.log(loginInfo);
-
   // create the navigation function
   const navigate = useNavigate();
 

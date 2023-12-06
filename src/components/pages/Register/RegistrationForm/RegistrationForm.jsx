@@ -1,4 +1,5 @@
 // react
+import PropTypes from "prop-types";
 import { useState } from "react";
 
 // react icons
@@ -17,7 +18,7 @@ import ButtonBtn from "./../../../shared/ButtonBtn/ButtonBtn";
 import GoogleLoginBtn from "../../../shared/GoogleLoginBtn/GoogleLoginBtn";
 import FileUploadBtn from "../../../shared/FileUploadBtn/FileUploadBtn";
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ modifyClasses }) => {
   const { registrationInfo, handleSubmit } = useRegistrationForm();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -29,12 +30,16 @@ const RegistrationForm = () => {
     "block w-full rounded-default border border-textLight py-2 px-4 text-textPrimary";
 
   return (
-    <div>
-      <form
-        noValidate
-        onSubmit={handleSubmit}
-        className="w-full md:w-[20rem] mx-auto p-4"
-      >
+    <div
+      className={`w-full mx-auto py-12 px-5 xsm:px-8 sm:px-10 2md:px-12 lg:px-10 ${modifyClasses}`}
+    >
+      {/* heading */}
+      <h2 className="capitalize mb-elementGapSm text-center text-2xl">
+        Register your account
+      </h2>
+
+      {/* form */}
+      <form noValidate onSubmit={handleSubmit} className="w-full">
         {/* username field */}
         <div className="mb-4">
           <input
@@ -127,10 +132,14 @@ const RegistrationForm = () => {
         modifyClasses="w-max mx-auto mb-7"
       />
       <Link to="/" className="block text-primary text-center hover:underline">
-        Go back to homepage
+        Back to Home
       </Link>
     </div>
   );
+};
+
+RegistrationForm.propTypes = {
+  modifyClasses: PropTypes.string,
 };
 
 export default RegistrationForm;

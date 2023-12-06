@@ -36,6 +36,7 @@ const AuthProvider = ({ children }) => {
   // check this state
   const [userAlreadyRegistered, setUserAlreadyRegistered] = useState(false);
 
+  console.log(userAlreadyRegistered);
   //  user/members/admin  profile information
   const [profileData, setProfileData] = useState(null);
 

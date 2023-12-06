@@ -19,17 +19,20 @@ const LoginForm = ({ modifyClasses }) => {
   const { loginInfo, handleLogin, handleLoginGoogle } = useLoginForm();
   const [showPassword, setShowPassword] = useState(false);
 
-  console.log(loginInfo);
-
   // common styles for input and label jsx elements
   const inputClasses =
     "block w-full rounded-default border border-textLight py-2 px-4 text-textPrimary";
 
   return (
-    <div className={`w-full md:w-[22rem] mx-auto p-10 ${modifyClasses}`}>
+    <div
+      className={`w-full mx-auto py-12 px-5 xsm:px-8 sm:px-10 2md:px-12 lg:px-10 ${modifyClasses}`}
+    >
+      {/* heading */}
       <h2 className="capitalize mb-elementGapSm text-center text-2xl">
         Login to your account
       </h2>
+
+      {/* form */}
       <form noValidate onSubmit={handleLogin} className="w-full">
         {/* email field */}
         <div className="mb-4">

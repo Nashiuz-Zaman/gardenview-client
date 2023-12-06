@@ -27,7 +27,7 @@ const Login = () => {
   }, [setLoginInfo]);
 
   return (
-    <div className="min-h-screen flex justify-center items-center">
+    <div className="min-h-screen flex justify-center items-center py-sectionGapSm md:py-sectionGapMd lg:py-sectionGapSm">
       <InnerContainer>
         <div>
           <SectionHeading

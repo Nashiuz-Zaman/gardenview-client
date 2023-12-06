@@ -125,6 +125,7 @@ const useRegistrationForm = () => {
 
       // if user exists
       if (userExistsResponse.data.userExists) {
+        console.log(userExistsResponse.data);
         setUserAlreadyRegistered(true);
         setAppLoading(false);
       } else {
