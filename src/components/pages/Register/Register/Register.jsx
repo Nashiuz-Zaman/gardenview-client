@@ -10,7 +10,7 @@ import useLoginRegistrationProvider from "../../../../hooks/useLoginRegistration
 import RegistrationFormWithImage from "../RegistrationFormWithImage/RegistrationFormWithImage";
 
 // data
-import { authImage } from "./../../../../nativeData/textContent";
+import { authImage2 } from "./../../../../nativeData/textContent";
 
 const Register = () => {
   const { appLoading } = useAuthProvider();
@@ -31,12 +31,12 @@ const Register = () => {
       <div>
         <SectionHeading
           modifyClasses="mb-elementGapMd text-center"
-          text="Welcome to Garden Views"
+          text="Welcome to GardenView"
         />
 
         <div>
           <RegistrationFormWithImage
-            imageSource={authImage}
+            imageSource={authImage2}
             appLoading={appLoading}
           />
         </div>

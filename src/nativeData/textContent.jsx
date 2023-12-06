@@ -76,3 +76,4 @@ export const directionsContent = {
 };
 
 export const authImage = "https://i.ibb.co/K71MKDm/auth.webp";
+export const authImage2 = "https://i.ibb.co/7ykLxJ1/auth2.webp";
