@@ -55,3 +55,17 @@ html {
   -webkit-backface-visibility: hidden !important;
   @apply translate-y-0 opacity-100 transition-all ease-out duration-[1500ms];
 }
+
+@keyframes riseUp {
+  0% {
+    box-shadow: 0 0px 0px -0px rgba(0, 0, 0, 0.1);
+  }
+
+  100% {
+    @apply shadow-large;
+  }
+}
+
+.form-animation {
+  animation: riseUp 2s ease-in forwards;
+}
