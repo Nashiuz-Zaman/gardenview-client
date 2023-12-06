@@ -3,12 +3,15 @@ import { useEffect } from "react";
 
 // components
 import SectionHeading from "../../../shared/SectionHeading/SectionHeading";
-import LoginForm from "./../LoginForm/LoginForm";
-import LoadingSpinner from "../../../shared/LoadingSpinner/LoadingSpinner";
+import InnerContainer from "./../../../containers/InnerContainer/InnerContainer";
 
 // hooks
 import useAuthProvider from "../../../../hooks/useAuthProvider";
 import useLoginRegistrationProvider from "../../../../hooks/useLoginRegistrationProvider";
+
+// data
+import { authImage } from "./../../../../nativeData/textContent";
+import LoginFormWithImage from "../LoginFormWithImage/LoginFormWithImage";
 
 const Login = () => {
   const { appLoading } = useAuthProvider();
@@ -25,23 +28,21 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex justify-center items-center">
-      <div>
-        <SectionHeading
-          modifyClasses="text-primary mb-7 text-center"
-          text="Welcome back!"
-        />
+      <InnerContainer>
+        <div>
+          <SectionHeading
+            modifyClasses="mb-elementGapMd text-center"
+            text="Welcome Back"
+          />
 
-        {appLoading && <LoadingSpinner text="Logging in" />}
-
-        {!appLoading && (
-          <>
-            <h2 className="capitalize mb-2 text-center text-2xl">
-              Login to your account
-            </h2>
-            <LoginForm />
-          </>
-        )}
-      </div>
+          <div>
+            <LoginFormWithImage
+              imageSource={authImage}
+              appLoading={appLoading}
+            />
+          </div>
+        </div>
+      </InnerContainer>
     </div>
   );
 };

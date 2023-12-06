@@ -1,4 +1,5 @@
-// react
+// react imports
+import PropTypes from "prop-types";
 import { useState } from "react";
 
 // react icons
@@ -14,7 +15,7 @@ import GoogleLoginBtn from "../../../shared/GoogleLoginBtn/GoogleLoginBtn";
 // custom hooks
 import useLoginForm from "../../../../hooks/useLoginForm";
 
-const LoginForm = () => {
+const LoginForm = ({ modifyClasses }) => {
   const { loginInfo, handleLogin, handleLoginGoogle } = useLoginForm();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -25,12 +26,11 @@ const LoginForm = () => {
     "block w-full rounded-default border border-textLight py-2 px-4 text-textPrimary";
 
   return (
-    <div>
-      <form
-        noValidate
-        onSubmit={handleLogin}
-        className="w-full md:w-[20rem] mx-auto p-4"
-      >
+    <div className={`w-full md:w-[22rem] mx-auto p-10 ${modifyClasses}`}>
+      <h2 className="capitalize mb-elementGapSm text-center text-2xl">
+        Login to your account
+      </h2>
+      <form noValidate onSubmit={handleLogin} className="w-full">
         {/* email field */}
         <div className="mb-4">
           <input
@@ -94,7 +94,7 @@ const LoginForm = () => {
         </p>
       </form>
 
-      <p className="text-center">Or</p>
+      <p className="text-center my-5">Or</p>
 
       <GoogleLoginBtn
         onClickFunction={handleLoginGoogle}
@@ -102,10 +102,14 @@ const LoginForm = () => {
       />
 
       <Link to="/" className="block text-primary text-center hover:underline">
-        Go back to homepage
+        Back to Home
       </Link>
     </div>
   );
+};
+
+LoginForm.propTypes = {
+  modifyClasses: PropTypes.string,
 };
 
 export default LoginForm;

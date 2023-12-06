@@ -74,3 +74,5 @@ export const directionsContent = {
   directions:
     "Navigate the sunlit Seaside Boulevard until you arrive at the grand entrance, where the refreshing sea breeze and the fragrance of saltwater greet you. A modern haven awaits on Seaside Boulevard, offering a blend of coastal elegance and city convenience. Experience the allure of GardenView Apartments, seamlessly nestled in the vibrant heart of Miami Beach.",
 };
+
+export const authImage = "https://i.ibb.co/Thvv6fB/auth-1.webp";
