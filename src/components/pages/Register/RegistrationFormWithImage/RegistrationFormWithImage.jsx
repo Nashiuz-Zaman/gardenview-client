@@ -29,24 +29,26 @@ const RegistrationFormWithImage = ({ imageSource, appLoading }) => {
       </div>
 
       {/* Registration form */}
-      <div>
+      <div className="w-full">
         {appLoading && <LoadingSpinner fullHeight={true} text="Registering" />}
         {!appLoading && !userAlreadyRegistered && <RegistrationForm />}
 
         {/* if user exists then show the user exists message */}
         {!appLoading && userAlreadyRegistered && (
-          <div>
-            <h2 className="mb-7 text-center text-2xl">User already exists</h2>
+          <div className="h-full">
+            <div className="h-full flex flex-col justify-center items-center">
+              <h2 className="mb-4 text-center text-2xl">User already exists</h2>
 
-            <Link to="/auth/login" className="block mx-auto">
-              <ButtonBtn
-                onClickFunction={() => {
-                  setUserAlreadyRegistered(false);
-                }}
-                text="Log in to your account"
-                modifyClasses="mx-auto"
-              />
-            </Link>
+              <Link to="/auth/login" className="block mx-auto">
+                <ButtonBtn
+                  onClickFunction={() => {
+                    setUserAlreadyRegistered(false);
+                  }}
+                  text="Log in to your account"
+                  modifyClasses="mx-auto"
+                />
+              </Link>
+            </div>
           </div>
         )}
       </div>

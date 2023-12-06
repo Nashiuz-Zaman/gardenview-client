@@ -120,7 +120,7 @@ const useRegistrationForm = () => {
     try {
       setAppLoading(true);
       const userExistsResponse = await axiosPublic.post("/checkUserExists", {
-        email: registrationInfo.email,
+        email: dataObject.email,
       });
 
       // if user exists
