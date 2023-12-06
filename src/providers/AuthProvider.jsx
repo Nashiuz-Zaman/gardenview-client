@@ -26,17 +26,20 @@ const googleProvider = new GoogleAuthProvider();
 
 // hooks
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import useToast from "../hooks/useToast";
 
 // auth provider starts here
 const AuthProvider = ({ children }) => {
   // should user exist
   const [userShouldExist, setUserShouldExist] = useState(false);
 
+  // react toastify
+  const { showToast } = useToast();
+
   // does user exist on database at the time of registration?
   // check this state
   const [userAlreadyRegistered, setUserAlreadyRegistered] = useState(false);
 
-  console.log(userAlreadyRegistered);
   //  user/members/admin  profile information
   const [profileData, setProfileData] = useState(null);
 
@@ -120,6 +123,7 @@ const AuthProvider = ({ children }) => {
         setUser(null);
         localStorage.removeItem("token");
         setAppLoading(false);
+        showToast("Logged Out Successfully", "success");
       })
       .catch((error) => console.error(error));
   };

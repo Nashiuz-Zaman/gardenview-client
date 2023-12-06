@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import useAuthProvider from "./useAuthProvider";
 import useLoginRegistrationProvider from "./useLoginRegistrationProvider";
 import useAxiosPublic from "./useAxiosPublic";
+import useToast from "./useToast";
 
 const useLoginForm = () => {
   // extract functions from auth context
@@ -16,6 +17,9 @@ const useLoginForm = () => {
     setUserShouldExist,
     setProfileData,
   } = useAuthProvider();
+
+  // react toastify
+  const { showToast } = useToast();
 
   // axios
   const axiosPublic = useAxiosPublic();
@@ -78,6 +82,7 @@ const useLoginForm = () => {
         } else {
           navigate("/");
         }
+        showToast("Logged In Successfully", "success");
         setAppLoading(false);
       }
     }
@@ -134,6 +139,7 @@ const useLoginForm = () => {
           } else {
             navigate("/");
           }
+          showToast("Logged In Successfully", "success");
           setAppLoading(false);
         }
       }
