@@ -7,3 +7,6 @@ VITE_appId=Your_own_credentials
 
 # imgbb apikey
 VITE_imgbbApiKey=Your_own_credentials
+
+# api base url
+VITE_apiBaseURL=Your_own_backend_URL
