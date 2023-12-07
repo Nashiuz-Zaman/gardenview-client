@@ -15,7 +15,11 @@ const LoadingSpinner = ({
         fullscreen ? "min-h-screen" : fullHeight ? "h-full" : "min-h-[30rem]"
       }`}
     >
-      <div className="h-full flex justify-center items-center p-8">
+      <div
+        className={`${
+          fullscreen ? "min-h-screen" : "h-full"
+        }  flex justify-center items-center p-8`}
+      >
         <div className="flex items-center gap-3">
           <p className="text-2xl">{text}</p>{" "}
           <ImSpinner9 className="text-2xl text-primaryLight animate-spin" />

@@ -33,7 +33,7 @@ const Announcements = () => {
 
         {!isLoading && announcementsData.length < 1 && <NoData />}
 
-        {!isLoading && announcementsData.lenth > 0 && (
+        {!isLoading && announcementsData.length > 0 && (
           <div className="space-y-4">
             {announcementsData.map((announcement) => {
               return (
