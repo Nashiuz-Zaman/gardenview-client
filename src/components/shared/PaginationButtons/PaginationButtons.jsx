@@ -40,7 +40,7 @@ const PaginationButtons = ({ pageCount, curPage, setCurPage }) => {
           return (
             <button
               title={`Go to page ${button.value}`}
-              className={`text-white text-lg min-w-[2rem] aspect-square rounded-full flex justify-center items-center transition-all duration-200 ${
+              className={`text-white text-sm min-w-[2rem] aspect-square rounded-full flex justify-center items-center transition-all duration-200 ${
                 button.value === curPage
                   ? "bg-primary"
                   : "bg-black hover:bg-primary"
