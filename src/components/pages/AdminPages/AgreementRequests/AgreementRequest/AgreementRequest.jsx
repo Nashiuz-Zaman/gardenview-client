@@ -22,6 +22,7 @@ const AgreementRequest = ({ agreementsData }) => {
 
   const { refetchAgreements, refetchFlats } = useFlatsAgreementsProvider();
 
+  // extract the axios private function from hook
   const axiosPrivate = useAxiosPrivate();
 
   const handleAccept = async (e) => {
@@ -44,8 +45,10 @@ const AgreementRequest = ({ agreementsData }) => {
       // since accepted user data has to change
       const updatedUser = {
         role: "member",
-        agreementDate: dateStr,
-        rentedApt: {
+        newlyRentedApartment: {
+          flatId: flatId,
+          agreementRequestDate: agreementReqDate,
+          agreementAcceptDate: dateStr,
           floor: floorNo,
           block: blockName,
           aptNo: apartmentNo,
@@ -81,7 +84,7 @@ const AgreementRequest = ({ agreementsData }) => {
 
   return (
     <div className="bg-lightGray p-6 rounded-defaultLg">
-      <div className="space-y-2 mb-5">
+      <div className="space-y-2">
         <p>
           <span className="font-bold">User Name: </span>
           {name}
@@ -127,7 +130,7 @@ const AgreementRequest = ({ agreementsData }) => {
 
       {/* buttons */}
       {status === "pending" && (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 mt-5">
           <ButtonBtn
             text="Accept"
             modifyClasses="text-sm"

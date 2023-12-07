@@ -10,41 +10,49 @@ const RentalStats = ({ rentalInfo }) => {
 
       {rentedApartments.length < 1 && <p>No apartments rented yet.</p>}
 
-      {rentedApartments.length > 0 &&
-        rentedApartments.map((apartment, i) => {
-          const {
-            agreementRequestDate,
-            agreementAcceptDate,
-            floor,
-            block,
-            aptNo,
-          } = apartment;
+      {rentedApartments.length > 0 && (
+        <div className="grid grid-cols-3 gap-4">
+          {rentedApartments.map((apartment, i) => {
+            const {
+              flatId,
+              agreementRequestDate,
+              agreementAcceptDate,
+              floor,
+              block,
+              aptNo,
+            } = apartment;
 
-          return (
-            <div key={i}>
-              <p>
-                <span className="font-bold">Agreement requested: </span>
-                {agreementRequestDate}
-              </p>
-              <p>
-                <span className="font-bold">Agreement accepted: </span>
-                {agreementAcceptDate}
-              </p>
-              <p>
-                <span className="font-bold">Floor: </span>
-                {floor}
-              </p>
-              <p>
-                <span className="font-bold">Block: </span>
-                {block}
-              </p>
-              <p>
-                <span className="font-bold">Room no: </span>
-                {aptNo}
-              </p>
-            </div>
-          );
-        })}
+            return (
+              <div className="space-y-1" key={i}>
+                <p>
+                  <span className="font-bold">Flat: </span>
+                  {flatId}
+                </p>
+                <p>
+                  <span className="font-bold">Agreement Requested On: </span>
+                  {agreementRequestDate}
+                </p>
+                <p>
+                  <span className="font-bold">Agreement Accepted On: </span>
+                  {agreementAcceptDate}
+                </p>
+                <p>
+                  <span className="font-bold">Floor: </span>
+                  {floor}
+                </p>
+                <p>
+                  <span className="font-bold">Block: </span>
+                  {block}
+                </p>
+                <p>
+                  <span className="font-bold">Room no: </span>
+                  {aptNo}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

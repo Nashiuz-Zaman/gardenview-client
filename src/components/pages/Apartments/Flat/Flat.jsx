@@ -17,7 +17,7 @@ const Flat = ({ flatData }) => {
   const { refetchFlats, refetchAgreements } = useFlatsAgreementsProvider();
 
   // extract user data
-  const { user, profileData } = useAuthProvider();
+  const { profileData } = useAuthProvider();
 
   // axios
   const axiosPrivate = useAxiosPrivate();
@@ -27,7 +27,7 @@ const Flat = ({ flatData }) => {
 
   const handleRequestAgreement = async (e) => {
     e.preventDefault();
-    if (!user) {
+    if (!profileData) {
       navigate("/auth/login");
       return;
     }

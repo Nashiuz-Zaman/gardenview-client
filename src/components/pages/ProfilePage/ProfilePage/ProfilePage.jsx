@@ -6,12 +6,12 @@ import RentalStats from "../RentalStats/RentalStats";
 import ProfileBasicInfo from "../ProfileBasicInfo/ProfileBasicInfo";
 
 const ProfilePage = () => {
-  const { user, profileData } = useAuthProvider();
+  const { profileData } = useAuthProvider();
 
   const profileBasicInfo = {
-    name: user.displayName,
-    imageSource: user.photoURL,
-    email: user.email,
+    name: profileData.name,
+    imageSource: profileData.imageSource,
+    email: profileData.email,
     role: profileData.role,
   };
 
