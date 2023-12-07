@@ -1,3 +1,3 @@
-export const apiBaseURL = "https://garden-view-server.vercel.app";
+export const apiBaseURL = import.meta.env.VITE_apiBaseUrl;
 
 // export const apiBaseURL = "http://localhost:5000";
