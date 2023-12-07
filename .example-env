@@ -1,0 +1,9 @@
+VITE_apiKey=Your_own_credentials
+VITE_authDomain=Your_own_credentials
+VITE_projectId=Your_own_credentials
+VITE_storageBucket=Your_own_credentials
+VITE_messagingSenderId=Your_own_credentials
+VITE_appId=Your_own_credentials
+
+# imgbb apikey
+VITE_imgbbApiKey=Your_own_credentials
