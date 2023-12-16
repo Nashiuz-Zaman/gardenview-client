@@ -18,6 +18,7 @@ const Home = () => {
   const featuresRef = useRef(null);
   const aboutRef = useRef(null);
   const directionsRef = useRef(null);
+  const galleryRef = useRef(null);
 
   const { computerScreenMatches } = useMediaQueryContext();
 
@@ -33,7 +34,13 @@ const Home = () => {
     computerScreenMatches ? 0.5 : 0.2
   );
 
-  // observing about section
+  // obeserving gallery section
+  const { shouldAnimate: galleryShouldAnimate } = useDetectElementIntersection(
+    galleryRef,
+    computerScreenMatches ? 0.5 : 0.2
+  );
+
+  // observing direction section
   const { shouldAnimate: directionsShouldAnimate } =
     useDetectElementIntersection(
       directionsRef,
@@ -64,8 +71,11 @@ const Home = () => {
       </section>
 
       {/* Gallery section */}
-      <section className="mb-sectionGapMd lg:mb-sectionGapLg relative z-30">
-        <Gallery />
+      <section
+        ref={galleryRef}
+        className="mb-sectionGapMd lg:mb-sectionGapLg relative z-30"
+      >
+        <Gallery shouldAnimate={galleryShouldAnimate} />
       </section>
 
       {/* directions section */}

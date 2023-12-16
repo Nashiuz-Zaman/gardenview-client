@@ -35,7 +35,7 @@ const PhotoGallery1 = ({ imagesData, modifyClasses = "" }) => {
       </div>
 
       {/* all images grid */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-3 md:grid-cols-4 gap-4">
         {imagesData &&
           imagesData.map((imageData) => {
             const { id, imageSource } = imageData;
