@@ -168,15 +168,10 @@ export const authImage2 = "https://i.ibb.co/7ykLxJ1/auth2.webp";
 
 export const apartmentStatusOptions = [
   {
+    id: 0,
     text: "All",
     value: "all",
   },
-  {
-    text: "Booked",
-    value: "true",
-  },
-  {
-    text: "Available",
-    value: "false",
-  },
+  { id: 1, text: "Booked", value: "true" },
+  { id: 2, text: "Available", value: "false" },
 ];

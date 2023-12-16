@@ -6,10 +6,12 @@ const ButtonBtn = ({
   onClickFunction = null,
   outlined = false,
   outlinedPrimary = false,
+  disabled = false,
   modifyClasses = "",
 }) => {
   return (
     <button
+      disabled={disabled}
       onClick={onClickFunction}
       // decide the design of button according to the props
       className={`${
@@ -18,7 +20,7 @@ const ButtonBtn = ({
           : outlinedPrimary
           ? "bg-transparent border border-primary text-primary hover:bg-primaryLightest hover:border-primaryLightest"
           : "bg-primary border border-primary hover:border-primaryLight hover:bg-primaryLight text-white"
-      } block transition-all duration-300 rounded-full px-5 py-2 text-lg ${modifyClasses}`}
+      } block transition-all duration-300 rounded-full px-5 py-2 text-lg disabled:opacity-50 ${modifyClasses}`}
     >
       {text}
     </button>
@@ -30,6 +32,7 @@ ButtonBtn.propTypes = {
   onClickFunction: PropTypes.func,
   outlined: PropTypes.bool,
   outlinedPrimary: PropTypes.bool,
+  disabled: PropTypes.bool,
   modifyClasses: PropTypes.string,
 };
 

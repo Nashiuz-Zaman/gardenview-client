@@ -12,8 +12,9 @@ import useFlatsAgreementsProvider from "../../../../hooks/useFlatsAgreementsProv
 
 const Flat = ({ flatData }) => {
   // extract flat data
-  const { _id, imageSource, floorNo, blockName, apartmentNo, rent } = flatData;
-
+  const { _id, imageSource, floorNo, blockName, apartmentNo, rent, booked } =
+    flatData;
+  console.log(booked);
   const { refetchFlats, refetchAgreements } = useFlatsAgreementsProvider();
 
   // extract user data
@@ -94,7 +95,8 @@ const Flat = ({ flatData }) => {
       {/* agreement button */}
       {(!profileData || profileData.role !== "admin") && (
         <ButtonBtn
-          text="Book Apartment"
+          disabled={booked ? true : false}
+          text={booked ? "Already Booked" : "Book Apartment"}
           onClickFunction={handleRequestAgreement}
           modifyClasses="text-sm !rounded-default"
         />
