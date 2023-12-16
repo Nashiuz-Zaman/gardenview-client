@@ -7,6 +7,7 @@ import Features from "../Features/Features";
 import About from "../About/About";
 import Directions from "../Directions/Directions";
 import InnerContainer from "./../../../containers/InnerContainer/InnerContainer";
+import Gallery from "../Gallery/Gallery";
 
 // hooks
 import useDetectElementIntersection from "../../../../hooks/useDetectElementIntersection";
@@ -60,6 +61,11 @@ const Home = () => {
       {/* about section */}
       <section ref={aboutRef} className="mb-sectionGapMd lg:mb-sectionGapLg">
         <About shouldAnimate={aboutShouldAnimate} />
+      </section>
+
+      {/* Gallery section */}
+      <section className="mb-sectionGapMd lg:mb-sectionGapLg relative z-30">
+        <Gallery />
       </section>
 
       {/* directions section */}

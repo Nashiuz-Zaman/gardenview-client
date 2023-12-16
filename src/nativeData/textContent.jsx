@@ -69,6 +69,94 @@ export const aboutContent = {
   ],
 };
 
+export const galleryContent = {
+  heading: <>Our Interiors</>,
+  description:
+    "Discover Gardenview's charm in our Gallery—a snapshot of modern luxury living. Stylish interiors and chic bedrooms await, inviting you to envision the elegance that defines our apartments. Immerse yourself in the beauty of Gardenview, where each image tells a story of refined taste and extraordinary living",
+  imagesData: [
+    {
+      id: 0,
+      imageSource: "https://i.ibb.co/KxT3NcZ/1.webp",
+    },
+    {
+      id: 1,
+      imageSource: "https://i.ibb.co/3BBt5y7/2.webp",
+    },
+    {
+      id: 2,
+      imageSource: "https://i.ibb.co/pv2PRfX/3.webp",
+    },
+    {
+      id: 3,
+      imageSource: "https://i.ibb.co/DtpkwDc/4.webp",
+    },
+    {
+      id: 4,
+      imageSource: "https://i.ibb.co/2dkRj1r/5.webp",
+    },
+    {
+      id: 5,
+      imageSource: "https://i.ibb.co/F004G5S/6.webp",
+    },
+    {
+      id: 6,
+      imageSource: "https://i.ibb.co/CzJ1ddr/7.webp",
+    },
+    {
+      id: 7,
+      imageSource: "https://i.ibb.co/4TGXtTN/8.webp",
+    },
+    {
+      id: 8,
+      imageSource: "https://i.ibb.co/mDH4PY8/9.webp",
+    },
+    {
+      id: 9,
+      imageSource: "https://i.ibb.co/C08d14F/10.webp",
+    },
+    {
+      id: 10,
+      imageSource: "https://i.ibb.co/jJW2jw6/11.webp",
+    },
+    {
+      id: 11,
+      imageSource: "https://i.ibb.co/Pxh4Cpx/12.webp",
+    },
+    {
+      id: 12,
+      imageSource: "https://i.ibb.co/wsmpg39/13.webp",
+    },
+    {
+      id: 13,
+      imageSource: "https://i.ibb.co/R6m7yYM/14.webp",
+    },
+    {
+      id: 14,
+      imageSource: "https://i.ibb.co/pydXt1P/15.webp",
+    },
+    {
+      id: 15,
+      imageSource: "https://i.ibb.co/gFg4Y5v/16.webp",
+    },
+    {
+      id: 16,
+      imageSource: "https://i.ibb.co/TP8kcv7/17.webp",
+    },
+    {
+      id: 17,
+      imageSource: "https://i.ibb.co/3S6vKXC/18.webp",
+    },
+    {
+      id: 18,
+      imageSource: "https://i.ibb.co/NKWTqPq/19.webp",
+    },
+    {
+      id: 19,
+      imageSource: "https://i.ibb.co/T8QFW3J/20.webp",
+    },
+  ],
+};
+
 export const directionsContent = {
   heading: <>Visit us</>,
   directions:
