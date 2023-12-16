@@ -68,7 +68,9 @@ const Home = () => {
         id="directions"
         className="mb-sectionGapMd lg:mb-sectionGapLg"
       >
-        <Directions shouldAnimate={directionsShouldAnimate} />
+        <InnerContainer>
+          <Directions shouldAnimate={directionsShouldAnimate} />
+        </InnerContainer>
       </section>
     </div>
   );
