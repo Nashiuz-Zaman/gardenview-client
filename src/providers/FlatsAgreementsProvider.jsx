@@ -16,6 +16,7 @@ const FlatsAgreementsProvider = ({ children }) => {
   // current page for pagination and limit
   const [curPage, setCurPage] = useState(1);
   const [pageCount, setPageCount] = useState(null);
+  const [apartmentStatus, setApartmentStatus] = useState("false");
   const limit = 6;
   const skip = (curPage - 1) * limit;
   const axiosPublic = useAxiosPublic();
@@ -29,7 +30,7 @@ const FlatsAgreementsProvider = ({ children }) => {
     queryKey: ["flats"],
     queryFn: async () => {
       const result = await axiosPublic.get(
-        `/flats/?booked=false&skip=${skip}&limit=${limit}`
+        `/flats/?booked=${apartmentStatus}&skip=${skip}&limit=${limit}`
       );
       // find page count
       if (result.data.success) {
@@ -42,7 +43,7 @@ const FlatsAgreementsProvider = ({ children }) => {
 
   useEffect(() => {
     refetchFlats();
-  }, [curPage, refetchFlats]);
+  }, [curPage, refetchFlats, apartmentStatus]);
 
   // agreement reqeusts
 
@@ -69,6 +70,8 @@ const FlatsAgreementsProvider = ({ children }) => {
     flatsData,
     flatsDataLoading,
     refetchFlats,
+    apartmentStatus,
+    setApartmentStatus,
     // agreements related
     agreementsData,
     agreementsDataLoading,

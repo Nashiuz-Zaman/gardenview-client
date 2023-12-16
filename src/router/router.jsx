@@ -16,14 +16,11 @@ import Apartments from "../components/pages/Apartments/Apartments/Apartments";
 import Announcements from "../components/pages/Announcements/Announcements";
 import ProfilePage from "./../components/pages/ProfilePage/ProfilePage/ProfilePage";
 
-// user pages
-
-// member pages
-
 // admin pages
 import MakeAnnouncement from "../components/pages/AdminPages/MakeAnnoucement/MakeAnnouncement";
 import AgreementRequests from "../components/pages/AdminPages/AgreementRequests/AgreementRequests";
 import ManageMembers from "../components/pages/AdminPages/ManageMembers/ManageMembers";
+// import UnderDevelopment from "./../components/pages/UnderDevelopment/UnderDevelopment";
 
 // route
 import PrivateRoute from "./../components/routes/PrivateRoute/PrivateRoute";
