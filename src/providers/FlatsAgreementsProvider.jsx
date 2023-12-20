@@ -43,7 +43,12 @@ const FlatsAgreementsProvider = ({ children }) => {
 
   useEffect(() => {
     refetchFlats();
-  }, [curPage, refetchFlats, apartmentStatus]);
+  }, [curPage, refetchFlats]);
+
+  useEffect(() => {
+    setCurPage(1);
+    refetchFlats();
+  }, [refetchFlats, apartmentStatus]);
 
   // agreement reqeusts
 
